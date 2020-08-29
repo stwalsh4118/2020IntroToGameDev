@@ -7,7 +7,7 @@ public class FireBullet : MonoBehaviour
 
     [SerializeField]
     private int bulletsAmount = 4;
-    private int bulletsShot = 0;
+
 
     [SerializeField]
     private float startAngle = 135f, endAngle = 235f;
@@ -17,7 +17,7 @@ public class FireBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InvokeRepeating("Fire", .01f, .1f);
+        InvokeRepeating("Fire", .01f, .05f);
     }
 
     private void Fire()
@@ -34,17 +34,12 @@ public class FireBullet : MonoBehaviour
             Vector2 bulDir = (bulMoveVector - transform.position).normalized;
 
             GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-            bul.transform.position = transform.position;
+            bul.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
             bul.transform.rotation = transform.rotation;
             bul.SetActive(true);
             bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
 
             angle += angleStep;
-            bulletsShot++;
-            if(bulletsShot>=160000000)
-            {
-                CancelInvoke();
-            }
         }
     }
 }
