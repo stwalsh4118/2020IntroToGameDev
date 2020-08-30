@@ -54,7 +54,7 @@ public class BulletPatternGenerator : MonoBehaviour
     [SerializeField]
     public float bulletCurve = 0;
     [SerializeField]
-    public float bulletTTL = 3000;
+    public float bulletTTL = 10;
 
 
     public int bulletLength;
@@ -160,19 +160,20 @@ public class BulletPatternGenerator : MonoBehaviour
         //Calculate the direction for each bullets which it will move along
         float direction = defaultAngle + (bulletAngle * i) + (arrayAngle   * j) + startAngle;
 
-        float bulDirX = x1 + Mathf.Sin((direction * Mathf.PI) / 180f);
-        float bulDirY = y1 + Mathf.Cos((direction * Mathf.PI) / 180f);
-
-        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-        Vector2 bulDir = (bulMoveVector - new Vector3(x1, y1, 0f)).normalized;
 
         //Create a new bullet
         GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
         bul.GetComponent<Bullet>().SetTimeZero();
         bul.transform.position = new Vector3(x1, y1, 1f);
         bul.transform.rotation = transform.rotation;
+        bul.GetComponent<Bullet>().SetXY(x1, y1);
+        bul.GetComponent<Bullet>().SetMoveDirection(direction);
+        bul.GetComponent<Bullet>().SetCurve(bulletCurve);
+        bul.GetComponent<Bullet>().SetAcceleration(bulletAcceleration);
+        bul.GetComponent<Bullet>().SetMoveSpeed(bulletSpeed);
+        bul.GetComponent<Bullet>().SetBulletLife(bulletTTL);
         bul.SetActive(true);
-        bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
+        
 
 
         //let Bullet = new bullet(x1, y1, direction, bulletSpeed, bulletAcceleration, bulletCurve, bulletTTL);
@@ -201,26 +202,5 @@ public class BulletPatternGenerator : MonoBehaviour
 
 
 
-    private void Fire()
-    {
-        float angleStep = (endAngle - startAngle1) / bulletsAmount;
-        float angle = startAngle1;
-
-        for (int i = 0; i < bulletsAmount + 1; i++)
-        {
-            float bulDirX = transform.position.x + Mathf.Sin((angle * Mathf.PI) / 180f);
-            float bulDirY = transform.position.y + Mathf.Cos((angle * Mathf.PI) / 180f);
-
-            Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-            Vector2 bulDir = (bulMoveVector - transform.position).normalized;
-
-            GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
-            bul.transform.position = new Vector3(transform.position.x, transform.position.y, 1f);
-            bul.transform.rotation = transform.rotation;
-            bul.SetActive(true);
-            bul.GetComponent<Bullet>().SetMoveDirection(bulDir);
-
-            angle += angleStep;
-        }
-    }
+   
 }

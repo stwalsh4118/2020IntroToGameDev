@@ -6,9 +6,14 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField]
     private float moveSpeed;
-    private Vector2 moveDirection;
-    private float bulletLife = 5f;
+    private float moveDirection;
+    public float bulletLife = 5f;
+    public float defaultMS = 5f;
     public float countTime = 0;
+    public float acceleration = 0;
+    public float curve = 0;
+    public float x1;
+    public float y1;
 
 
     private void OnEnable()
@@ -18,13 +23,22 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        moveSpeed = 5f;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+        moveDirection = moveDirection + curve * Time.deltaTime;
+
+        float bulDirX = x1 + Mathf.Sin((moveDirection * Mathf.PI) / 180f);
+        float bulDirY = y1 + Mathf.Cos((moveDirection * Mathf.PI) / 180f);
+
+        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
+        Vector2 bulDir = (bulMoveVector - new Vector3(x1, y1, 0f)).normalized;
+
+        moveSpeed = moveSpeed + acceleration * Time.deltaTime;
+        transform.Translate(bulDir * moveSpeed * Time.deltaTime);
         countTime = countTime + Time.deltaTime;
         if(countTime >= bulletLife)
         {
@@ -37,7 +51,7 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void SetMoveDirection(Vector2 dir)
+    public void SetMoveDirection(float dir)
     {
         moveDirection = dir;
     }
@@ -47,9 +61,35 @@ public class Bullet : MonoBehaviour
         moveSpeed = speed;
     }
 
+    public void SetAcceleration(float accel)
+    {
+        acceleration = accel;
+    }
+
+    public void SetCurve(float cur)
+    {
+        curve = cur;
+    }
+
     public void SetTimeZero()
     {
         countTime = 0;
+    }
+
+    public void SetDefault()
+    {
+        moveSpeed = defaultMS;
+    }
+
+    public void SetXY(float x, float y) 
+    {
+        x1 = x;
+        y1 = y;
+    }
+
+    public void SetBulletLife(float life)
+    {
+        bulletLife = life;
     }
 
     private void Destroy()
