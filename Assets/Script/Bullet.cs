@@ -30,15 +30,17 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         moveDirection = moveDirection + curve * Time.deltaTime;
-
-        float bulDirX = x1 + Mathf.Sin((moveDirection * Mathf.PI) / 180f);
-        float bulDirY = y1 + Mathf.Cos((moveDirection * Mathf.PI) / 180f);
-
-        Vector3 bulMoveVector = new Vector3(bulDirX, bulDirY, 0f);
-        Vector2 bulDir = (bulMoveVector - new Vector3(x1, y1, 0f)).normalized;
-
         moveSpeed = moveSpeed + acceleration * Time.deltaTime;
-        transform.Translate(bulDir * moveSpeed * Time.deltaTime);
+
+
+        float bulDirX = xDir(moveDirection);
+        float bulDirY = yDir(moveDirection);
+
+        float x = transform.position.x + bulDirX * moveSpeed * Time.deltaTime;
+        float y = transform.position.y + bulDirY * moveSpeed * Time.deltaTime;
+
+        Vector3 move = new Vector3(x, y, 1f);
+        transform.position = move;
         countTime = countTime + Time.deltaTime;
         if(countTime >= bulletLife)
         {
@@ -91,6 +93,21 @@ public class Bullet : MonoBehaviour
     {
         bulletLife = life;
     }
+
+    public float xDir(float angle)
+    {
+        float radians = angle * Mathf.PI / 180;
+        return Mathf.Cos(radians);
+    }
+
+    public float yDir(float angle)
+    {
+        float radians = angle * Mathf.PI / 180;
+        return -Mathf.Sin(radians);
+
+    }
+
+
 
     private void Destroy()
     {

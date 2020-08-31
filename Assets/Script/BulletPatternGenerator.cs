@@ -19,6 +19,7 @@ public class BulletPatternGenerator : MonoBehaviour
     public float startAngle = 0; //Start angle
     [SerializeField]
     public float defaultAngle = 0;
+    public float endAngle = 360;
 
     //Spinning Variables
     [SerializeField]
@@ -57,35 +58,33 @@ public class BulletPatternGenerator : MonoBehaviour
     public float bulletTTL = 10;
 
 
-    public int bulletLength;
+    private int bulletLength;
 
-    [SerializeField]
-    public int arrrayLength = 0;
+    private int arrrayLength = 0;
 
-    public float arrayAngle;
-    public float bulletAngle;
+    private float arrayAngle;
+    private float bulletAngle;
 
     [SerializeField]
     public float patternTime = 0.1f;
-    public float countTime = 0;
-
-
-
+    private float countTime = 0;
 
 
     [SerializeField]
-    private int bulletsAmount = 4;
-
+    public bool Throw = false;
 
     [SerializeField]
-    private float startAngle1 = 135f, endAngle = 235f;
+    public bool Submit = false;
 
     private Vector2 bulletMoveDirection;
+
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         //InvokeRepeating("Fire", .01f, .05f);
+        animator = GetComponent<Animator>();
     }
 
 
@@ -116,6 +115,18 @@ public class BulletPatternGenerator : MonoBehaviour
             Generate();
         }
        
+        if (Throw)
+        {
+            animator.SetTrigger("Throw");
+            Throw = false;
+        }
+
+        if (Submit)
+        {
+            Debug.Log("[" + patternArrays + ", " + bulletsPerArrays + ", " + spreadBetweenArray + ", " + startAngle + ", " + defaultAngle + ", " + beginSpinSpeed + ", " + spinRate + ", " + spinModificator + ", " + invertSpin + ", " + maxSpinRate + ", " + fireRate + ", " + objectWidth + ", " + objectHeight + ", " + xOffset + ", " + yOffset + ", " + bulletSpeed + ", " + bulletAcceleration + ", " + bulletCurve + ", " + bulletTTL + ", " + bulletLength + ", ");
+            Submit = false;
+        }
+
     }
 
 
@@ -131,7 +142,7 @@ public class BulletPatternGenerator : MonoBehaviour
         }
 
         //If Default Angle > 360 , set it to 0
-        if (defaultAngle > 360)
+        if (defaultAngle > endAngle)
         {
             defaultAngle = 0;
         }
@@ -157,6 +168,9 @@ public class BulletPatternGenerator : MonoBehaviour
         float x1 = transform.position.x + xOffset;// + lengthdir_x(objectWidth, defaultAngle + (bulletAngle * i) + (arrayAngle * j) + startAngle);
         float y1 = transform.position.y + yOffset;// + lengthdir_y(objectHeight, defaultAngle + (bulletAngle * i) + (arrayAngle * j) + startAngle);
 
+
+        float x2 = transform.position.x + xOffset + lengthdir_x(objectWidth, defaultAngle + (bulletAngle * i) + (arrayAngle * j) + startAngle);
+        float y2 = transform.position.y + yOffset + lengthdir_y(objectHeight, defaultAngle + (bulletAngle * i) + (arrayAngle * j) + startAngle);
         //Calculate the direction for each bullets which it will move along
         float direction = defaultAngle + (bulletAngle * i) + (arrayAngle   * j) + startAngle;
 
@@ -164,9 +178,9 @@ public class BulletPatternGenerator : MonoBehaviour
         //Create a new bullet
         GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
         bul.GetComponent<Bullet>().SetTimeZero();
-        bul.transform.position = new Vector3(x1, y1, 1f);
+        bul.transform.position = new Vector3(x2, y2, 1f);
         bul.transform.rotation = transform.rotation;
-        bul.GetComponent<Bullet>().SetXY(x1, y1);
+        bul.GetComponent<Bullet>().SetXY(x2, y2);
         bul.GetComponent<Bullet>().SetMoveDirection(direction);
         bul.GetComponent<Bullet>().SetCurve(bulletCurve);
         bul.GetComponent<Bullet>().SetAcceleration(bulletAcceleration);
