@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletPatternGenerator : MonoBehaviour
 {
+    
 
     [SerializeField]
     public int patternArrays = 2; //Total bullet arrays
@@ -35,7 +36,7 @@ public class BulletPatternGenerator : MonoBehaviour
 
     //Fire Rate Variables
     [SerializeField]
-    public float fireRate = 5;
+    public float fireRate = .2f;
 
     //Offsets 
     [SerializeField]
@@ -65,8 +66,6 @@ public class BulletPatternGenerator : MonoBehaviour
     private float arrayAngle;
     private float bulletAngle;
 
-    [SerializeField]
-    public float patternTime = 0.1f;
     private float countTime = 0;
 
 
@@ -77,14 +76,23 @@ public class BulletPatternGenerator : MonoBehaviour
     public bool Submit = false;
 
     private Vector2 bulletMoveDirection;
+    public float commandLength = 5f;
+    [SerializeField]
+    private float commandTime = 6f;
+    private int commandNumber = 0;
+    private string[][] commands;
 
     Animator animator;
+    CommandReader commandReader;
+    private int numCommands;
 
     // Start is called before the first frame update
     void Start()
     {
-        //InvokeRepeating("Fire", .01f, .05f);
         animator = GetComponent<Animator>();
+        commandReader = GetComponent<CommandReader>();
+        commands = commandReader.dataPairs;
+        numCommands = commandReader.numCommands;
     }
 
 
@@ -109,7 +117,25 @@ public class BulletPatternGenerator : MonoBehaviour
         bulletAngle = (spreadBetweenArray / arrrayLength); //Calcualtes the spread within the bullets in the arrays
 
         countTime = countTime + Time.deltaTime;
-        if (countTime >= patternTime)
+        commandTime = commandTime + Time.deltaTime;
+        if(commandTime >= commandLength)
+        {
+            if (!(commandNumber >= numCommands))
+            {
+                changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),
+                              float.Parse(commands[commandNumber][4]), float.Parse(commands[commandNumber][5]), float.Parse(commands[commandNumber][6]), float.Parse(commands[commandNumber][7]),
+                             float.Parse(commands[commandNumber][8]), float.Parse(commands[commandNumber][9]), int.Parse(commands[commandNumber][10]), float.Parse(commands[commandNumber][11]),
+                             float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
+                             float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
+                              float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
+            }
+                          
+            commandNumber++;
+            commandTime = 0;
+        }
+
+
+        if (countTime >= fireRate)
         {
             countTime = 0;
             Generate();
@@ -123,7 +149,11 @@ public class BulletPatternGenerator : MonoBehaviour
 
         if (Submit)
         {
-            Debug.Log("[" + patternArrays + ", " + bulletsPerArrays + ", " + spreadBetweenArray + ", " + startAngle + ", " + defaultAngle + ", " + beginSpinSpeed + ", " + spinRate + ", " + spinModificator + ", " + invertSpin + ", " + maxSpinRate + ", " + fireRate + ", " + objectWidth + ", " + objectHeight + ", " + xOffset + ", " + yOffset + ", " + bulletSpeed + ", " + bulletAcceleration + ", " + bulletCurve + ", " + bulletTTL + ", " + bulletLength + ", ");
+            Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+                startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
+                invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
+                "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
+                commandLength);
             Submit = false;
         }
 
@@ -190,15 +220,6 @@ public class BulletPatternGenerator : MonoBehaviour
         
 
 
-        //let Bullet = new bullet(x1, y1, direction, bulletSpeed, bulletAcceleration, bulletCurve, bulletTTL);
-
-        //Spawn the newly created bullet
-        //Bullet.spawn();
-
-        //Push each bullet into the bullet array
-        //bulletArray.push(Bullet);
-
-
     }
 
 
@@ -213,8 +234,36 @@ public class BulletPatternGenerator : MonoBehaviour
         return dist * -(Mathf.Sin((angle * Mathf.PI) / 180));
     }
 
+    private void changeCommand(int patArrays, int bulPerArray, float spreadBetweenArr, float spreadWithinArr,
+                                float startAng, float defaultAng, float endAng, float beginSpinSpd, float spinRat,
+                                float spinMod, int invSpin, float maxSpin, float fireRat, float objWidth, float objHeight,
+                                float xOff, float yOff, float bulletSpd, float bulletAccel, float bulletCurv, float bulletLife,
+                                float cmdLength)
+    {
+        patternArrays = patArrays;
+        bulletsPerArrays = bulPerArray;
+        spreadBetweenArray = spreadBetweenArr;
+        spreadWithinArray = spreadWithinArr;
+        startAngle = startAng;
+        defaultAngle = defaultAng;
+        endAngle = endAng;
+        beginSpinSpeed = beginSpinSpd;
+        spinRate = spinRat;
+        spinModificator = spinMod;
+        invertSpin = invSpin;
+        maxSpinRate = maxSpin;
+        fireRate = fireRat;
+        objectWidth = objWidth;
+        objectHeight = objHeight;
+        xOffset = xOff;
+        yOffset = yOff;
+        bulletSpeed = bulletSpd;
+        bulletAcceleration = bulletAccel;
+        bulletCurve = bulletCurv;
+        bulletTTL = bulletLife;
+        commandLength = cmdLength;
+
+    }
 
 
-
-   
 }
