@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CommandReader : MonoBehaviour
+public class BossMovementCommandReader : MonoBehaviour
 {
     public TextAsset dataFile;
     public string[] dataLines;

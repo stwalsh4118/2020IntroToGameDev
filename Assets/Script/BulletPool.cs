@@ -6,16 +6,24 @@ public class BulletPool : MonoBehaviour
 {
 
     public static BulletPool bulletPoolInstance;
+    [System.Serializable]
+    public class ObjectPoolItem
+    {
+        public GameObject pooledBullet;
+    }
+    public List<ObjectPoolItem> itemsToPool;
 
-    [SerializeField]
-    private GameObject pooledBullet;
     private bool notEnoughBulletsInPool = true;
 
     private List<GameObject> bullets;
 
+    public List<GameObject> pooledObjects;
+
     private void Awake()
     {
+        pooledObjects = new List<GameObject>();
         bulletPoolInstance = this;
+        
     }
 
     // Start is called before the first frame update
@@ -24,27 +32,25 @@ public class BulletPool : MonoBehaviour
         bullets = new List<GameObject>();
     }
 
-    public GameObject GetBullet()
+    public GameObject GetBullet(string tag)
     {
-        if(bullets.Count > 0)
+        for (int i = 0; i < pooledObjects.Count; i++)
         {
-            for(int i = 0; i < bullets.Count; i++)
+            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].tag == tag)
             {
-                if(!bullets[i].activeInHierarchy)
-                {
-                    return bullets[i];
-                }
+                return pooledObjects[i];
             }
         }
-
-        if(notEnoughBulletsInPool)
+        foreach (ObjectPoolItem item in itemsToPool)
         {
-            GameObject bul = Instantiate(pooledBullet);
-            bul.SetActive(false);
-            bullets.Add(bul);
-            return bul;
+            if (item.pooledBullet.tag == tag)
+            {
+                    GameObject obj = (GameObject)Instantiate(item.pooledBullet);
+                    obj.SetActive(false);
+                    pooledObjects.Add(obj);
+                    return obj;
+            }
         }
-
         return null;
     }
 

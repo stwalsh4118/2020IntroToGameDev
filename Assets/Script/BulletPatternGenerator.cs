@@ -163,11 +163,14 @@ public class BulletPatternGenerator : MonoBehaviour
 
     private void Generate()
     {
+        
+
         for (int i = 0; i < patternArrays; i++)
         { //For each bullet array in pattern
             for (int j = 0; j < bulletsPerArrays; j++)
             { //For each bullet in bullet array
                 calculation(i, j, arrayAngle, bulletAngle);
+ 
             }
         }
 
@@ -206,7 +209,7 @@ public class BulletPatternGenerator : MonoBehaviour
 
 
         //Create a new bullet
-        GameObject bul = BulletPool.bulletPoolInstance.GetBullet();
+        GameObject bul = BulletPool.bulletPoolInstance.GetBullet("Bullet2");
         bul.GetComponent<Bullet>().SetTimeZero();
         bul.transform.position = new Vector3(x2, y2, 1f);
         bul.transform.rotation = transform.rotation;
@@ -217,7 +220,6 @@ public class BulletPatternGenerator : MonoBehaviour
         bul.GetComponent<Bullet>().SetMoveSpeed(bulletSpeed);
         bul.GetComponent<Bullet>().SetBulletLife(bulletTTL);
         bul.SetActive(true);
-        
 
 
     }

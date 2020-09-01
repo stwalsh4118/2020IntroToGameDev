@@ -29,7 +29,7 @@ public class DestroyByBoundary : MonoBehaviour {
   void OnTriggerExit2D(Collider2D other) {
         if (other.gameObject.tag == "Boundary")
         {
-            if (gameObject.tag == "Bullet")
+            if ((gameObject.tag == "Bullet") || (gameObject.tag == "Bullet2"))
             {
                 gameObject.SetActive(false);
             }

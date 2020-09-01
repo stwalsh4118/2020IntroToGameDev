@@ -166,9 +166,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &215433707
+--- !u!1 &259940284
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -176,8 +176,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 215433708}
-  - component: {fileID: 215433709}
+  - component: {fileID: 259940286}
+  - component: {fileID: 259940285}
   m_Layer: 0
   m_Name: BulletPool
   m_TagString: Untagged
@@ -185,34 +185,38 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &215433708
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215433707}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5932934, y: -1.1292917, z: -0.7855015}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &215433709
+--- !u!114 &259940285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215433707}
+  m_GameObject: {fileID: 259940284}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 35e0d3c1a65cd5c4f9bb943d06a3d4db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledBullet: {fileID: 3372554544521630050, guid: 7bbb9db94a113d64db325b879c4e0498,
-    type: 3}
+  itemsToPool:
+  - pooledBullet: {fileID: 3372554544521630050, guid: 7bbb9db94a113d64db325b879c4e0498,
+      type: 3}
+  - pooledBullet: {fileID: 3372554544521630050, guid: 0105b5b3f9b8e1d4ba56c147a641e178,
+      type: 3}
+  pooledObjects: []
+--- !u!4 &259940286
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 259940284}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.2936726, y: -3.070606, z: -0.7855015}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -303,6 +307,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4382924597184318788, guid: cf045b5198c9af24b9923f935259dfac,
+        type: 3}
+      propertyPath: overhang
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4382924598022227891, guid: cf045b5198c9af24b9923f935259dfac,
         type: 3}
       propertyPath: m_Name
@@ -362,6 +371,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382924598795256696, guid: cf045b5198c9af24b9923f935259dfac,
+        type: 3}
+      propertyPath: overhang
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382924599015302256, guid: cf045b5198c9af24b9923f935259dfac,
+        type: 3}
+      propertyPath: overhang
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4382924599085388901, guid: cf045b5198c9af24b9923f935259dfac,
+        type: 3}
+      propertyPath: overhang
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf045b5198c9af24b9923f935259dfac, type: 3}
@@ -433,6 +457,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1791914685130966104, guid: 29891a6663e3e444b83e57641978cc04,
+        type: 3}
+      propertyPath: Submit
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1791914685130966104, guid: 29891a6663e3e444b83e57641978cc04,
+        type: 3}
+      propertyPath: Throw
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1791914685130966107, guid: 29891a6663e3e444b83e57641978cc04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -495,3 +529,58 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 29891a6663e3e444b83e57641978cc04, type: 3}
+--- !u!1 &2094951324 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1791914685130966948, guid: 29891a6663e3e444b83e57641978cc04,
+    type: 3}
+  m_PrefabInstance: {fileID: 1736493127}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2094951329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094951324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dc1316bc206cf941aa0858f8417d4b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataFile: {fileID: 4900000, guid: a59d7077880904b4693907871efb77f4, type: 3}
+  dataLines: []
+  numCommands: 0
+--- !u!114 &2094951330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094951324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53ac36eab19fc44c8a0db3ed1f16d17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  x: 0
+  y: 0
+  direction: 0
+  speed: 0
+  commandLength: 5
+  commandTime: 6
+  Submit: 0
+--- !u!114 &2094951331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2094951324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762e4bff97a51714095bd5a252f74198, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataFile: {fileID: 4900000, guid: 73ac29a014542d24d89c20b0899f399e, type: 3}
+  dataLines: []
+  numCommands: 0
