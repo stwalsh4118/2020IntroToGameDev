@@ -11,13 +11,16 @@ public class CommandReader : MonoBehaviour
     void Start()
     {
         dataLines = dataFile.text.Split('\n');
-        numCommands = dataLines.Length;
         dataPairs = new string[dataLines.Length][];
 
         int lineNum = 0;
         foreach (string line in dataLines)
         {
-            dataPairs[lineNum++] = line.Split(',');
+            if (!(line == ""))
+            {
+                dataPairs[lineNum++] = line.Split(',');
+            }
         }
+        numCommands = lineNum;
     }
 }

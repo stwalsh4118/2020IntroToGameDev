@@ -35,7 +35,7 @@ public class BossMovement : MonoBehaviour
         commandTime = commandTime + Time.deltaTime;
         if (commandTime >= commandLength)
         {
-            if (!(commandNumber >= numCommands))
+            if (!(commandNumber >= numCommands) && !(numCommands == 0))
             {
                 changeCommand(float.Parse(commands[commandNumber][0]), float.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]), float.Parse(commands[commandNumber][4]));
             }

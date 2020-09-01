@@ -7,15 +7,15 @@ public class BulletPatternGenerator : MonoBehaviour
     
 
     [SerializeField]
-    public int patternArrays = 2; //Total bullet arrays
+    public int patternArrays = 0; //Total bullet arrays
     [SerializeField]
-    public int bulletsPerArrays = 10; //Bullets per Array
+    public int bulletsPerArrays = 0; //Bullets per Array
 
     //Angle Variables
     [SerializeField]
-    public float spreadBetweenArray = 180; //spread between arrays
+    public float spreadBetweenArray = 0; //spread between arrays
     [SerializeField]
-    public float spreadWithinArray = 90; //spread between the last and the first bullet of an array
+    public float spreadWithinArray = 0; //spread between the last and the first bullet of an array
     [SerializeField]
     public float startAngle = 0; //Start angle
     [SerializeField]
@@ -24,7 +24,7 @@ public class BulletPatternGenerator : MonoBehaviour
 
     //Spinning Variables
     [SerializeField]
-    public float beginSpinSpeed = 1;
+    public float beginSpinSpeed = 0;
     [SerializeField]
     public float spinRate = 0; // The rate at which the pattern is spinning
     [SerializeField]
@@ -32,11 +32,11 @@ public class BulletPatternGenerator : MonoBehaviour
     [SerializeField]
     public int invertSpin = 1; // (1 = spinRate gets inversed once SpinRate >= maxSpinRate  || 0 = Spin doesn't invert at all)
     [SerializeField]
-    public float maxSpinRate = 10; //The max spin rate ->if SpinRate >= maxSpinRate --> inverts spin
+    public float maxSpinRate = 0; //The max spin rate ->if SpinRate >= maxSpinRate --> inverts spin
 
     //Fire Rate Variables
     [SerializeField]
-    public float fireRate = .2f;
+    public float fireRate = 0f;
 
     //Offsets 
     [SerializeField]
@@ -50,13 +50,13 @@ public class BulletPatternGenerator : MonoBehaviour
 
     //Bullet Variables
     [SerializeField]
-    public float bulletSpeed = 1;
+    public float bulletSpeed = 0;
     [SerializeField]
     public float bulletAcceleration = 0;
     [SerializeField]
     public float bulletCurve = 0;
     [SerializeField]
-    public float bulletTTL = 10;
+    public float bulletTTL = 0;
 
 
     private int bulletLength;
@@ -116,11 +116,10 @@ public class BulletPatternGenerator : MonoBehaviour
         arrayAngle = (spreadWithinArray / bulletLength); //Calculates the spread between each array
         bulletAngle = (spreadBetweenArray / arrrayLength); //Calcualtes the spread within the bullets in the arrays
 
-        countTime = countTime + Time.deltaTime;
-        commandTime = commandTime + Time.deltaTime;
+
         if(commandTime >= commandLength)
         {
-            if (!(commandNumber >= numCommands))
+            if (!(commandNumber >= numCommands) && !(numCommands == 0))
             {
                 changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),
                               float.Parse(commands[commandNumber][4]), float.Parse(commands[commandNumber][5]), float.Parse(commands[commandNumber][6]), float.Parse(commands[commandNumber][7]),
@@ -156,7 +155,8 @@ public class BulletPatternGenerator : MonoBehaviour
                 commandLength);
             Submit = false;
         }
-
+        countTime = countTime + Time.deltaTime;
+        commandTime = commandTime + Time.deltaTime;
     }
 
 
