@@ -83,16 +83,17 @@ public class BulletPatternGenerator : MonoBehaviour
     private string[][] commands;
 
     Animator animator;
-    CommandReader commandReader;
+    CommandReader bulletcommandReader;
     private int numCommands;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
-        commandReader = GetComponent<CommandReader>();
-        commands = commandReader.dataPairs;
-        numCommands = commandReader.numCommands;
+        bulletcommandReader = GetComponent<CommandReader>();
+        commands = bulletcommandReader.dataPairs;
+        numCommands = bulletcommandReader.numCommands;
+        Debug.Log(numCommands);
     }
 
 
@@ -116,9 +117,10 @@ public class BulletPatternGenerator : MonoBehaviour
         arrayAngle = (spreadWithinArray / bulletLength); //Calculates the spread between each array
         bulletAngle = (spreadBetweenArray / arrrayLength); //Calcualtes the spread within the bullets in the arrays
 
-
-        if(commandTime >= commandLength)
+        //Debug.Log(commandNumber + "," + numCommands);
+        if (commandTime >= commandLength)
         {
+
             if (!(commandNumber >= numCommands) && !(numCommands == 0))
             {
                 changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),

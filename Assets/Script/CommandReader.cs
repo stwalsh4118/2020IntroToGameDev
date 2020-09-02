@@ -22,5 +22,6 @@ public class CommandReader : MonoBehaviour
             }
         }
         numCommands = lineNum;
+        Debug.Log("number of commands " + numCommands);
     }
 }
