@@ -20,6 +20,9 @@ public class BossMovement : MonoBehaviour
     private int numCommands;
     public bool Submit = false;
 
+    private float arenaCenterX;
+    private float arenaCenterY;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,8 @@ public class BossMovement : MonoBehaviour
         commandReader = GetComponent<BossMovementCommandReader>();
         commands = commandReader.dataPairs;
         numCommands = commandReader.numCommands;
+        arenaCenterX = GetArenaCenter.centerCoordinates.x;
+        arenaCenterY = GetArenaCenter.centerCoordinates.y;
     }
 
     // Update is called once per frame
@@ -37,7 +42,7 @@ public class BossMovement : MonoBehaviour
         {
             if (!(commandNumber >= numCommands) && !(numCommands == 0))
             {
-                changeCommand(float.Parse(commands[commandNumber][0]), float.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]), float.Parse(commands[commandNumber][4]));
+                //changeCommand(float.Parse(commands[commandNumber][0]), float.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]), float.Parse(commands[commandNumber][4]));
             }
 
             commandNumber++;
@@ -56,8 +61,8 @@ public class BossMovement : MonoBehaviour
     private void changeCommand(float X, float Y, float dir, float spd,
                                 float cmdLength)
     {
-        x = X;
-        y = Y;
+        x = X + arenaCenterX;
+        y = Y + arenaCenterY;
         direction = dir;
         speed = spd;
         commandLength = cmdLength;
