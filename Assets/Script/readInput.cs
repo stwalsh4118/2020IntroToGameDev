@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 
 public class readInput : MonoBehaviour
 {
-
-    public GameObject inputField;
+    public List<GameObject> inputFields;
     private float count = 0;
-    // Start is called before the first frame update
-    void Start()
+
+    void Awake()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -21,12 +20,15 @@ public class readInput : MonoBehaviour
         count += Time.deltaTime;
         if (count >= 1)
         {
-            string text = inputField.GetComponent<TMP_InputField>().text;
-            Debug.Log(text);
-            count = 0;
-            if(text == "load")
-            {
-                SceneManager.LoadScene("sceneexperiment");
+            foreach (GameObject input in inputFields) {
+                Debug.Log("wtf");
+                string text = input.GetComponent<TMP_InputField>().text;
+                Debug.Log(text);
+                count = 0;
+                if (text == "load")
+                {
+                    SceneManager.LoadScene("sceneexperiment");
+                }
             }
         }
     }
