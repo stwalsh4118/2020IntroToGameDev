@@ -6,7 +6,7 @@ public class BossMovement : MonoBehaviour
 {
     //inputs
     public float x = 0;
-    public float y = 0;
+    public float y = 8;
     public float direction;
     public float speed;
     public float commandLength = 5f;

@@ -1341,7 +1341,28 @@ MonoBehaviour:
   inputFields:
   - {fileID: 771554207}
   - {fileID: 2124222082}
-  - {fileID: 1855220812}
+  - {fileID: 1284338086}
+  - {fileID: 1106513605}
+  - {fileID: 2031513327}
+  - {fileID: 1771192485}
+  - {fileID: 832207629}
+  - {fileID: 482466236}
+  - {fileID: 794812224}
+  - {fileID: 1672084281}
+  - {fileID: 1658595612}
+  - {fileID: 943635749}
+  - {fileID: 1148394873}
+  - {fileID: 1298134815}
+  - {fileID: 1710442926}
+  - {fileID: 1209480595}
+  - {fileID: 586648542}
+  - {fileID: 1262206144}
+  - {fileID: 1549514924}
+  - {fileID: 1501317148}
+  - {fileID: 385057256}
+  - {fileID: 934030633}
+  inputValues: []
+  defaults: []
 --- !u!4 &225784222
 Transform:
   m_ObjectHideFlags: 0
@@ -15856,7 +15877,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   x: 0
-  y: 0
+  y: 8
   direction: 0
   speed: 0
   commandLength: 5

@@ -7,13 +7,13 @@ public class BulletPatternGenerator : MonoBehaviour
     
 
     [SerializeField]
-    public int patternArrays = 0; //Total bullet arrays
+    public int patternArrays = 4; //Total bullet arrays
     [SerializeField]
-    public int bulletsPerArrays = 0; //Bullets per Array
+    public int bulletsPerArrays = 1; //Bullets per Array
 
     //Angle Variables
     [SerializeField]
-    public float spreadBetweenArray = 0; //spread between arrays
+    public float spreadBetweenArray = 90; //spread between arrays
     [SerializeField]
     public float spreadWithinArray = 0; //spread between the last and the first bullet of an array
     [SerializeField]
@@ -32,11 +32,11 @@ public class BulletPatternGenerator : MonoBehaviour
     [SerializeField]
     public int invertSpin = 1; // (1 = spinRate gets inversed once SpinRate >= maxSpinRate  || 0 = Spin doesn't invert at all)
     [SerializeField]
-    public float maxSpinRate = 0; //The max spin rate ->if SpinRate >= maxSpinRate --> inverts spin
+    public float maxSpinRate = 10; //The max spin rate ->if SpinRate >= maxSpinRate --> inverts spin
 
     //Fire Rate Variables
     [SerializeField]
-    public float fireRate = 0f;
+    public float fireRate = 1f;
 
     //Offsets 
     [SerializeField]
@@ -50,13 +50,13 @@ public class BulletPatternGenerator : MonoBehaviour
 
     //Bullet Variables
     [SerializeField]
-    public float bulletSpeed = 0;
+    public float bulletSpeed = 5;
     [SerializeField]
     public float bulletAcceleration = 0;
     [SerializeField]
     public float bulletCurve = 0;
     [SerializeField]
-    public float bulletTTL = 0;
+    public float bulletTTL = 5;
 
 
     private int bulletLength;
@@ -85,15 +85,24 @@ public class BulletPatternGenerator : MonoBehaviour
     Animator animator;
     CommandReader bulletcommandReader;
     private int numCommands;
-
+    GameObject InputReader;
+    readInput rI;
+    private float[] inputs;
+    private bool constantInputs = true;
+    public string[] defaults;
     // Start is called before the first frame update
+    void Awake()
+    {
+        sendDefaults();
+    }
     void Start()
     {
         animator = GetComponent<Animator>();
         bulletcommandReader = GetComponent<CommandReader>();
         commands = bulletcommandReader.dataPairs;
         numCommands = bulletcommandReader.numCommands;
-        Debug.Log(numCommands);
+        InputReader = GameObject.Find("InputReader");
+        rI = InputReader.GetComponent<readInput>();
     }
 
 
@@ -101,6 +110,8 @@ public class BulletPatternGenerator : MonoBehaviour
 
     void Update()
     {
+        inputs = rI.inputValues;
+
         bulletLength = bulletsPerArrays - 1;
         if (bulletLength == 0)
         {
@@ -118,22 +129,34 @@ public class BulletPatternGenerator : MonoBehaviour
         bulletAngle = (spreadBetweenArray / arrrayLength); //Calcualtes the spread within the bullets in the arrays
 
         //Debug.Log(commandNumber + "," + numCommands);
-        if (commandTime >= commandLength)
+        if (!constantInputs)
         {
-
-            if (!(commandNumber >= numCommands) && !(numCommands == 0))
+            if (commandTime >= commandLength)
             {
-                /*changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),
-                              float.Parse(commands[commandNumber][4]), float.Parse(commands[commandNumber][5]), float.Parse(commands[commandNumber][6]), float.Parse(commands[commandNumber][7]),
-                             float.Parse(commands[commandNumber][8]), float.Parse(commands[commandNumber][9]), int.Parse(commands[commandNumber][10]), float.Parse(commands[commandNumber][11]),
-                             float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
-                             float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
-                              float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
-                              */
+
+                if (!(commandNumber >= numCommands) && !(numCommands == 0))
+                {
+                    /*changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),
+                                  float.Parse(commands[commandNumber][4]), float.Parse(commands[commandNumber][5]), float.Parse(commands[commandNumber][6]), float.Parse(commands[commandNumber][7]),
+                                 float.Parse(commands[commandNumber][8]), float.Parse(commands[commandNumber][9]), int.Parse(commands[commandNumber][10]), float.Parse(commands[commandNumber][11]),
+                                 float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
+                                 float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
+                                  float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
+                                  */
+                }
+
+                commandNumber++;
+                commandTime = 0;
             }
-                          
-            commandNumber++;
-            commandTime = 0;
+        }
+
+        if(constantInputs)
+        {
+            changeCommand((int)inputs[0], (int)inputs[1], inputs[2], inputs[3], inputs[4],
+                          inputs[5], inputs[6], inputs[7], inputs[8], inputs[9],
+                     (int)inputs[10], inputs[11], inputs[12], inputs[13], inputs[14],
+                          inputs[15], inputs[16], inputs[17], inputs[18], inputs[19],
+                          inputs[20], inputs[21]);
         }
 
 
@@ -250,7 +273,7 @@ public class BulletPatternGenerator : MonoBehaviour
         spreadBetweenArray = spreadBetweenArr;
         spreadWithinArray = spreadWithinArr;
         startAngle = startAng;
-        defaultAngle = defaultAng;
+        //defaultAngle = defaultAng;
         endAngle = endAng;
         beginSpinSpeed = beginSpinSpd;
         spinRate = spinRat;
@@ -270,5 +293,31 @@ public class BulletPatternGenerator : MonoBehaviour
 
     }
 
+    private void sendDefaults()
+    {
+        defaults = new string[22];
+        defaults[0] = patternArrays.ToString();
+        defaults[1] = bulletsPerArrays.ToString();
+        defaults[2] = spreadBetweenArray.ToString();
+        defaults[3] = spreadWithinArray.ToString();
+        defaults[4] = startAngle.ToString();
+        defaults[5] = defaultAngle.ToString();
+        defaults[6] = endAngle.ToString();
+        defaults[7] = beginSpinSpeed.ToString();
+        defaults[8] = spinRate.ToString();
+        defaults[9] = spinModificator.ToString();
+        defaults[10] = invertSpin.ToString();
+        defaults[11] = maxSpinRate.ToString();
+        defaults[12] = fireRate.ToString();
+        defaults[13] = objectWidth.ToString();
+        defaults[14] = objectHeight.ToString();
+        defaults[15] = xOffset.ToString();
+        defaults[16] = yOffset.ToString();
+        defaults[17] = bulletSpeed.ToString();
+        defaults[18] = bulletAcceleration.ToString();
+        defaults[19] = bulletCurve.ToString();
+        defaults[20] = bulletTTL.ToString();
+        defaults[21] = commandLength.ToString();
 
+    }
 }
