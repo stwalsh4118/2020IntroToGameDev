@@ -23,4 +23,22 @@ public class CommandReader : MonoBehaviour
         }
         numCommands = lineNum;
     }
+
+    public void loadCommands()
+    {
+        dataLines = SubmitCommand.sub.grabCommands().Split('\n');
+        dataPairs = new string[dataLines.Length][];
+
+        int lineNum = 0;
+        foreach (string line in dataLines)
+        {
+            if (!(line == ""))
+            {
+                dataPairs[lineNum++] = line.Split(',');
+            }
+        }
+        numCommands = lineNum;
+        GameObject glut = GameObject.Find("Gluttony");
+        glut.GetComponent<BulletPatternGenerator>().LoadCommands();
+    }
 }

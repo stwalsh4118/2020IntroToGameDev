@@ -88,8 +88,12 @@ public class BulletPatternGenerator : MonoBehaviour
     GameObject InputReader;
     readInput rI;
     private float[] inputs;
-    private bool constantInputs = true;
+    private bool constantInputs = false;
     public string[] defaults;
+    public bool isRunningCommands = false;
+
+
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -128,36 +132,30 @@ public class BulletPatternGenerator : MonoBehaviour
         arrayAngle = (spreadWithinArray / bulletLength); //Calculates the spread between each array
         bulletAngle = (spreadBetweenArray / arrrayLength); //Calcualtes the spread within the bullets in the arrays
 
-        //Debug.Log(commandNumber + "," + numCommands);
-        if (!constantInputs)
+        if (isRunningCommands)
         {
-            if (commandTime >= commandLength)
+            if (((commandTime >= commandLength) || (commandNumber == 0)) && !(numCommands == 0))
             {
-
-                if (!(commandNumber >= numCommands) && !(numCommands == 0))
-                {
-                    /*changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),
-                                  float.Parse(commands[commandNumber][4]), float.Parse(commands[commandNumber][5]), float.Parse(commands[commandNumber][6]), float.Parse(commands[commandNumber][7]),
-                                 float.Parse(commands[commandNumber][8]), float.Parse(commands[commandNumber][9]), int.Parse(commands[commandNumber][10]), float.Parse(commands[commandNumber][11]),
-                                 float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
-                                 float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
-                                  float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
-                                  */
-                }
-
+                changeCommand(int.Parse(commands[commandNumber][0]), int.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]),
+                              float.Parse(commands[commandNumber][4]), float.Parse(commands[commandNumber][5]), float.Parse(commands[commandNumber][6]), float.Parse(commands[commandNumber][7]),
+                             float.Parse(commands[commandNumber][8]), float.Parse(commands[commandNumber][9]), int.Parse(commands[commandNumber][10]), float.Parse(commands[commandNumber][11]),
+                             float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
+                             float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
+                              float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
+                Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+                startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
+                invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
+                "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
+                 commandLength);
                 commandNumber++;
                 commandTime = 0;
             }
+            if(commandNumber >= numCommands)
+            {
+                isRunningCommands = !isRunningCommands;
+            }
         }
 
-        if(constantInputs)
-        {
-            changeCommand((int)inputs[0], (int)inputs[1], inputs[2], inputs[3], inputs[4],
-                          inputs[5], inputs[6], inputs[7], inputs[8], inputs[9],
-                     (int)inputs[10], inputs[11], inputs[12], inputs[13], inputs[14],
-                          inputs[15], inputs[16], inputs[17], inputs[18], inputs[19],
-                          inputs[20], inputs[21]);
-        }
 
 
         if (countTime >= fireRate)
@@ -215,6 +213,7 @@ public class BulletPatternGenerator : MonoBehaviour
             {
 
                 spinModificator = -spinModificator;
+                spinRate += (3 * spinModificator);
             }
         }
     }
@@ -320,4 +319,32 @@ public class BulletPatternGenerator : MonoBehaviour
         defaults[21] = commandLength.ToString();
 
     }
+
+    public void TestCommand()
+    {
+        changeCommand((int)inputs[0], (int)inputs[1], inputs[2], inputs[3], inputs[4],
+                          inputs[5], inputs[6], inputs[7], inputs[8], inputs[9],
+                     (int)inputs[10], inputs[11], inputs[12], inputs[13], inputs[14],
+                          inputs[15], inputs[16], inputs[17], inputs[18], inputs[19],
+                          inputs[20], inputs[21]);
+    }
+
+    public void SubmitTheCommand()
+    {
+        string subcom = (patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+                startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
+                invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
+                "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
+                commandLength + "\n");
+        SubmitCommand.sub.submitCommand(subcom);
+    }
+
+    public void LoadCommands()
+    {
+        commands = bulletcommandReader.dataPairs;
+        commandNumber = 0;
+        numCommands = bulletcommandReader.numCommands;
+        isRunningCommands = !isRunningCommands;
+    }
+
 }

@@ -25,9 +25,6 @@ public class readInput : MonoBehaviour
     void Update()
     {
         int i = 0;
-        count += Time.deltaTime;
-        if (count >= 1)
-        {
             foreach (GameObject input in inputFields) {
                 string preParse = input.GetComponent<TMP_InputField>().text;
                 if (preParse == "")
@@ -42,8 +39,7 @@ public class readInput : MonoBehaviour
                 text = 0;
                 i++;
             }
-            count = 0;
-        }
+
     }
 
     public void SetDefaults()
