@@ -86,9 +86,8 @@ public class BulletPatternGenerator : MonoBehaviour
     CommandReader bulletcommandReader;
     private int numCommands;
     GameObject InputReader;
-    readInput rI;
+    readBulletInput rI;
     private float[] inputs;
-    private bool constantInputs = false;
     public string[] defaults;
     public bool isRunningCommands = false;
 
@@ -104,9 +103,9 @@ public class BulletPatternGenerator : MonoBehaviour
         animator = GetComponent<Animator>();
         bulletcommandReader = GetComponent<CommandReader>();
         commands = bulletcommandReader.dataPairs;
-        numCommands = bulletcommandReader.numCommands;
+        numCommands = bulletcommandReader.numBulletCommands;
         InputReader = GameObject.Find("InputReader");
-        rI = InputReader.GetComponent<readInput>();
+        rI = InputReader.GetComponent<readBulletInput>();
     }
 
 
@@ -132,6 +131,7 @@ public class BulletPatternGenerator : MonoBehaviour
         arrayAngle = (spreadWithinArray / bulletLength); //Calculates the spread between each array
         bulletAngle = (spreadBetweenArray / arrrayLength); //Calcualtes the spread within the bullets in the arrays
 
+        //run commands
         if (isRunningCommands)
         {
             if (((commandTime >= commandLength) || (commandNumber == 0)) && !(numCommands == 0))
@@ -142,11 +142,12 @@ public class BulletPatternGenerator : MonoBehaviour
                              float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
                              float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
                               float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
-                Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+                /*Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
                 startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
                 invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
                 "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
                  commandLength);
+                 */
                 commandNumber++;
                 commandTime = 0;
             }
@@ -343,8 +344,18 @@ public class BulletPatternGenerator : MonoBehaviour
     {
         commands = bulletcommandReader.dataPairs;
         commandNumber = 0;
-        numCommands = bulletcommandReader.numCommands;
-        isRunningCommands = !isRunningCommands;
+        countTime = 0;
+        numCommands = bulletcommandReader.numBulletCommands;
+        commandTime = 1000;
+        if(isRunningCommands)
+        {
+
+        }
+        else
+        {
+            isRunningCommands = !isRunningCommands;
+        }
+        
     }
 
 }
