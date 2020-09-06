@@ -272,7 +272,7 @@ public class BulletPatternGenerator : MonoBehaviour
         spreadBetweenArray = spreadBetweenArr;
         spreadWithinArray = spreadWithinArr;
         startAngle = startAng;
-        //defaultAngle = defaultAng;
+        defaultAngle = defaultAng;
         endAngle = endAng;
         beginSpinSpeed = beginSpinSpd;
         spinRate = spinRat;
