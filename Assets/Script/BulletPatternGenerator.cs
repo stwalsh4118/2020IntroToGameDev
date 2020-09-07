@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BulletPatternGenerator : MonoBehaviour
 {
@@ -319,6 +320,33 @@ public class BulletPatternGenerator : MonoBehaviour
         defaults[20] = bulletTTL.ToString();
         defaults[21] = commandLength.ToString();
 
+    }
+
+    public void setDefaults()
+    {
+        patternArrays = int.Parse(defaults[0]);
+        bulletsPerArrays = int.Parse(defaults[1]);
+        spreadBetweenArray = float.Parse(defaults[2]);
+        spreadWithinArray = float.Parse(defaults[3]);
+        startAngle = float.Parse(defaults[4]);
+        defaultAngle = float.Parse(defaults[5]);
+        endAngle = float.Parse(defaults[6]);
+        beginSpinSpeed = float.Parse(defaults[7]);
+        spinRate = float.Parse(defaults[8]);
+        spinModificator = float.Parse(defaults[9]);
+        invertSpin = int.Parse(defaults[10]);
+        maxSpinRate = float.Parse(defaults[11]);
+        fireRate = float.Parse(defaults[12]);
+        objectWidth = float.Parse(defaults[13]);
+        objectHeight = float.Parse(defaults[14]);
+        objectHeight = float.Parse(defaults[15]);
+        yOffset = float.Parse(defaults[16]);
+        bulletSpeed = float.Parse(defaults[17]);
+        bulletAcceleration = float.Parse(defaults[18]);
+        bulletCurve = float.Parse(defaults[19]);
+        bulletTTL = float.Parse(defaults[20]);
+        commandLength = float.Parse(defaults[21]);
+        isRunningCommands = false;
     }
 
     public void TestCommand()

@@ -13,13 +13,15 @@ public class CommandReader : MonoBehaviour
     public int isMovement = 0;
     void Start()
     {
+        SubmitCommand.sub.getFromTxt(dataFile.text);
         dataLines = dataFile.text.Split('\n');
         dataPairs = new string[dataLines.Length][];
         movementPairs = new string[dataLines.Length][];
-
+        Debug.Log(dataFile.text);
         int lineNum = 0;
         foreach (string line in dataLines)
         {
+            Debug.Log(line);
             if (line.Contains("Boss Movement"))
             {
                 isMovement = 1;
@@ -28,7 +30,7 @@ public class CommandReader : MonoBehaviour
             }
             if (isMovement == 1)
             {
-                if (line == "" || line.Contains("//"))
+                if (line == "" || line.Contains("//") || line.Contains("Boss Movement"))
                 {
 
                 }
@@ -48,14 +50,18 @@ public class CommandReader : MonoBehaviour
                     dataPairs[lineNum++] = line.Split(',');
                 }
             }
-            if (isMovement == 0)
-            {
-                numBulletCommands = lineNum;
-            }
         }
-
+        if (isMovement == 0)
+        {
+            numBulletCommands = lineNum;
+        }
+        else
+        {
+            numMovementCommands = lineNum;
+        }
         GameObject glut = GameObject.Find("Gluttony");
         glut.GetComponent<BulletPatternGenerator>().LoadCommands();
+        glut.GetComponent<BossMovement>().LoadCommands();
         isMovement = 0;
     }
 
@@ -68,7 +74,7 @@ public class CommandReader : MonoBehaviour
         int lineNum = 0;
         foreach (string line in dataLines)
         {
-            Debug.Log(line);
+            //Debug.Log(line);
             if(line.Contains("Boss Movement"))
             {
                 isMovement = 1;

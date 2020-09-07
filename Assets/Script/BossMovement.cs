@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossMovement : MonoBehaviour
 {
@@ -91,11 +92,21 @@ public class BossMovement : MonoBehaviour
     private void sendDefaults()
     {
         defaults = new string[5];
-        defaults[0] = (x-arenaCenterX).ToString();
-        defaults[1] = (y-arenaCenterY).ToString();
+        defaults[0] = (x - arenaCenterX).ToString();
+        defaults[1] = (y - arenaCenterY).ToString();
         defaults[2] = speed.ToString();
         defaults[3] = direction.ToString();
         defaults[4] = commandLength.ToString();
+    }
+
+    public void setDefaults()
+    {
+        x  = float.Parse(defaults[0]) + arenaCenterX;
+        y = float.Parse(defaults[1]) + arenaCenterY;
+        speed = float.Parse(defaults[2]);
+        direction = float.Parse(defaults[3]);
+        commandLength = float.Parse(defaults[4]);
+        isRunningCommands = false;
     }
 
     public void TestCommand()
