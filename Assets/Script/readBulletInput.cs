@@ -2,16 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class readBulletInput : MonoBehaviour
 {
     public List<GameObject> inputFields;
+    public GameObject bulletSpriteDropdown;
     private float count = 0;
     public float[] inputValues;
     private float text = 0;
     GameObject glut;
     BulletPatternGenerator BPG;
     public string[] defaults;
+    public string tag;
     void Awake()
     {
         inputValues = new float[22];
@@ -39,6 +42,8 @@ public class readBulletInput : MonoBehaviour
                 text = 0;
                 i++;
             }
+            //Debug.Log(bulletSpriteDropdown.GetComponent<Dropdown>().options[bulletSpriteDropdown.GetComponent<Dropdown>().value].text);
+            tag = bulletSpriteDropdown.GetComponent<Dropdown>().options[bulletSpriteDropdown.GetComponent<Dropdown>().value].text;
 
     }
 

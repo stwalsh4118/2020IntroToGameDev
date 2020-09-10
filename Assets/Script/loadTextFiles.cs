@@ -10,13 +10,20 @@ public class loadTextFiles : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        filePaths = Directory.GetFiles(Application.dataPath + "/BossCommands", "*.txt");
+        if (Application.isEditor)
+        {
+            filePaths = Directory.GetFiles(Application.dataPath + "/BossCommands", "*.txt");
+        }
+        else
+        {
+            filePaths = Directory.GetFiles(Application.dataPath, "*.txt");
+        }
         fileNames = new string[filePaths.Length];
         int i = 0;
         foreach (string files in filePaths)
         {
-            Debug.Log(Path.GetFileName(files));
-            fileNames[i] = Path.GetFileName(files);
+            Debug.Log(Path.GetFileNameWithoutExtension(files));
+            fileNames[i] = Path.GetFileNameWithoutExtension(files);
             i++;
         }
     }
@@ -25,5 +32,25 @@ public class loadTextFiles : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void UpdateFiles()
+    {
+        if (Application.isEditor)
+        {
+            filePaths = Directory.GetFiles(Application.dataPath + "/BossCommands", "*.txt");
+        }
+        else
+        {
+            filePaths = Directory.GetFiles(Application.dataPath, "*.txt");
+        }
+        fileNames = new string[filePaths.Length];
+        int i = 0;
+        foreach (string files in filePaths)
+        {
+            Debug.Log(Path.GetFileNameWithoutExtension(files));
+            fileNames[i] = Path.GetFileNameWithoutExtension(files);
+            i++;
+        }
     }
 }

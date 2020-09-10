@@ -58,7 +58,8 @@ public class BulletPatternGenerator : MonoBehaviour
     public float bulletCurve = 0;
     [SerializeField]
     public float bulletTTL = 5;
-
+    public float commandLength = 5f;
+    public string tag = "Donut";
 
     private int bulletLength;
 
@@ -73,11 +74,8 @@ public class BulletPatternGenerator : MonoBehaviour
     [SerializeField]
     public bool Throw = false;
 
-    [SerializeField]
-    public bool Submit = false;
-
     private Vector2 bulletMoveDirection;
-    public float commandLength = 5f;
+
     [SerializeField]
     private float commandTime = 6f;
     private int commandNumber = 0;
@@ -91,6 +89,7 @@ public class BulletPatternGenerator : MonoBehaviour
     private float[] inputs;
     public string[] defaults;
     public bool isRunningCommands = false;
+    string tagInput;
 
 
 
@@ -115,6 +114,7 @@ public class BulletPatternGenerator : MonoBehaviour
     void Update()
     {
         inputs = rI.inputValues;
+        tagInput = rI.tag;
 
         bulletLength = bulletsPerArrays - 1;
         if (bulletLength == 0)
@@ -142,7 +142,7 @@ public class BulletPatternGenerator : MonoBehaviour
                              float.Parse(commands[commandNumber][8]), float.Parse(commands[commandNumber][9]), int.Parse(commands[commandNumber][10]), float.Parse(commands[commandNumber][11]),
                              float.Parse(commands[commandNumber][12]), float.Parse(commands[commandNumber][13]), float.Parse(commands[commandNumber][14]), float.Parse(commands[commandNumber][15]),
                              float.Parse(commands[commandNumber][16]), float.Parse(commands[commandNumber][17]), float.Parse(commands[commandNumber][18]), float.Parse(commands[commandNumber][19]),
-                              float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]));
+                              float.Parse(commands[commandNumber][20]), float.Parse(commands[commandNumber][21]), commands[commandNumber][22]);
                 /*Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
                 startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
                 invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
@@ -172,15 +172,7 @@ public class BulletPatternGenerator : MonoBehaviour
             Throw = false;
         }
 
-        if (Submit)
-        {
-            Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
-                startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
-                invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
-                "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
-                commandLength);
-            Submit = false;
-        }
+        
         countTime = countTime + Time.deltaTime;
         commandTime = commandTime + Time.deltaTime;
     }
@@ -215,7 +207,7 @@ public class BulletPatternGenerator : MonoBehaviour
             {
 
                 spinModificator = -spinModificator;
-                spinRate += (3 * spinModificator);
+                spinRate += spinModificator;
             }
         }
     }
@@ -236,7 +228,7 @@ public class BulletPatternGenerator : MonoBehaviour
 
 
         //Create a new bullet
-        GameObject bul = BulletPool.bulletPoolInstance.GetBullet("Bullet2");
+        GameObject bul = BulletPool.bulletPoolInstance.GetBullet(tag);
         bul.GetComponent<Bullet>().SetTimeZero();
         bul.transform.position = new Vector3(x2, y2, 1f);
         bul.transform.rotation = transform.rotation;
@@ -267,7 +259,7 @@ public class BulletPatternGenerator : MonoBehaviour
                                 float startAng, float defaultAng, float endAng, float beginSpinSpd, float spinRat,
                                 float spinMod, int invSpin, float maxSpin, float fireRat, float objWidth, float objHeight,
                                 float xOff, float yOff, float bulletSpd, float bulletAccel, float bulletCurv, float bulletLife,
-                                float cmdLength)
+                                float cmdLength, string bulletTag)
     {
         patternArrays = patArrays;
         bulletsPerArrays = bulPerArray;
@@ -291,12 +283,13 @@ public class BulletPatternGenerator : MonoBehaviour
         bulletCurve = bulletCurv;
         bulletTTL = bulletLife;
         commandLength = cmdLength;
+        tag = bulletTag;
 
     }
 
     private void sendDefaults()
     {
-        defaults = new string[22];
+        defaults = new string[23];
         defaults[0] = patternArrays.ToString();
         defaults[1] = bulletsPerArrays.ToString();
         defaults[2] = spreadBetweenArray.ToString();
@@ -319,6 +312,7 @@ public class BulletPatternGenerator : MonoBehaviour
         defaults[19] = bulletCurve.ToString();
         defaults[20] = bulletTTL.ToString();
         defaults[21] = commandLength.ToString();
+        defaults[22] = tag;
 
     }
 
@@ -346,6 +340,7 @@ public class BulletPatternGenerator : MonoBehaviour
         bulletCurve = float.Parse(defaults[19]);
         bulletTTL = float.Parse(defaults[20]);
         commandLength = float.Parse(defaults[21]);
+        tag = (defaults[22]);
         isRunningCommands = false;
     }
 
@@ -355,7 +350,7 @@ public class BulletPatternGenerator : MonoBehaviour
                           inputs[5], inputs[6], inputs[7], inputs[8], inputs[9],
                      (int)inputs[10], inputs[11], inputs[12], inputs[13], inputs[14],
                           inputs[15], inputs[16], inputs[17], inputs[18], inputs[19],
-                          inputs[20], inputs[21]);
+                          inputs[20], inputs[21], tagInput);
     }
 
     public void SubmitTheCommand()
@@ -364,7 +359,7 @@ public class BulletPatternGenerator : MonoBehaviour
                 startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
                 invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
                 "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
-                commandLength + "\n");
+                commandLength + "," + tag + "\n");
         SubmitCommand.sub.submitCommand(subcom);
     }
 
