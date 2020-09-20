@@ -13,19 +13,27 @@ public class CommandReader : MonoBehaviour
     public int isMovement = 0;
     void Start()
     {
-  
+        loadCommands();
     }
 
     public void loadCommands()
     {
-        dataLines = SubmitCommand.sub.grabCommands().Split('\n');
+        if (!dataFile)
+        {
+            dataLines = SubmitCommand.sub.grabCommands().Split('\n');
+        }
+        else
+        {
+            dataLines = dataFile.text.Split('\n');
+        }
         dataPairs = new string[dataLines.Length][];
         movementPairs = new string[dataLines.Length][];
 
         int lineNum = 0;
         foreach (string line in dataLines)
         {
-            if(line.Contains("Boss Movement"))
+            string trimmedLine = line.Trim();
+            if(trimmedLine.Contains("Boss Movement"))
             {
                 isMovement = 1;
                 numBulletCommands = lineNum;
@@ -33,24 +41,24 @@ public class CommandReader : MonoBehaviour
             }
             if (isMovement == 1)
             {
-                if (line == "" || line.Contains("//") || line.Contains("Boss Movement"))
+                if (trimmedLine == "" || trimmedLine.Contains("//") || trimmedLine.Contains("Boss Movement") || trimmedLine == " ")
                 {
 
                 }
                 else
                 {
-                    movementPairs[lineNum++] = line.Split(',');
+                    movementPairs[lineNum++] = trimmedLine.Split(',');
                 }
             }
             else
             {
-                if (line == "" || line.Contains("//"))
+                if (trimmedLine == "" || trimmedLine.Contains("//"))
                 {
 
                 }
                 else
                 {
-                    dataPairs[lineNum++] = line.Split(',');
+                    dataPairs[lineNum++] = trimmedLine.Split(',');
                 }
             }
         }
@@ -62,9 +70,17 @@ public class CommandReader : MonoBehaviour
         {
             numMovementCommands = lineNum;
         }
-        GameObject glut = GameObject.Find("Gluttony");
-        glut.GetComponent<BulletPatternGenerator>().LoadCommands();
-        glut.GetComponent<BossMovement>().LoadCommands();
+        GameObject glut = GameObject.Find("Boss");
+        if (glut.GetComponent<BulletPatternGenerator>() != null)
+        {
+            glut.GetComponent<BulletPatternGenerator>().LoadCommands();
+            glut.GetComponent<BossMovement>().LoadCommands();
+        }
+        else
+        {
+            glut.GetComponent<BPGInGame>().LoadCommands();
+            glut.GetComponent<BMInGame>().LoadCommands();
+        }
         isMovement = 0;
     }
 }

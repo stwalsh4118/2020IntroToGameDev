@@ -147,7 +147,7 @@ public class BulletPatternGenerator : MonoBehaviour
                 startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
                 invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
                 "," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
-                 commandLength);
+                 commandLength + "," + tag);
                  */
                 commandNumber++;
                 commandTime = 0;
@@ -155,6 +155,7 @@ public class BulletPatternGenerator : MonoBehaviour
             if(commandNumber >= numCommands)
             {
                 isRunningCommands = !isRunningCommands;
+                setZeros();
             }
         }
 
@@ -228,6 +229,7 @@ public class BulletPatternGenerator : MonoBehaviour
 
 
         //Create a new bullet
+        //Debug.Log(tag);
         GameObject bul = BulletPool.bulletPoolInstance.GetBullet(tag);
         bul.GetComponent<Bullet>().SetTimeZero();
         bul.transform.position = new Vector3(x2, y2, 1f);
@@ -341,6 +343,33 @@ public class BulletPatternGenerator : MonoBehaviour
         bulletTTL = float.Parse(defaults[20]);
         commandLength = float.Parse(defaults[21]);
         tag = (defaults[22]);
+        isRunningCommands = false;
+    }
+
+    public void setZeros()
+    {
+        patternArrays = 0;
+        bulletsPerArrays = 0;
+        spreadBetweenArray = 0;
+        spreadWithinArray = 0;
+        startAngle = 0;
+        defaultAngle = 0;
+        endAngle = 0;
+        beginSpinSpeed = 0;
+        spinRate = 0;
+        spinModificator = 0;
+        invertSpin = 0;
+        maxSpinRate = 0;
+        fireRate = 0;
+        objectWidth = 0;
+        objectHeight = 0;
+        objectHeight = 0;
+        yOffset = 0;
+        bulletSpeed = 0;
+        bulletAcceleration = 0;
+        bulletCurve = 0;
+        bulletTTL = 0;
+        commandLength = 0;
         isRunningCommands = false;
     }
 

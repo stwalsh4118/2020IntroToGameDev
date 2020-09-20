@@ -29,13 +29,24 @@ public class DestroyByBoundary : MonoBehaviour {
   void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Boundary")
         {
-            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza"))
+            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Arrow"))
             {
                 gameObject.SetActive(false);
             }
             else
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+            }
+        }
+        if (other.gameObject.tag == "Character")
+        {
+            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Bone"))
+            {
+                gameObject.SetActive(false);
+            }
+            else
+            {
+               // Destroy(gameObject);
             }
         }
 

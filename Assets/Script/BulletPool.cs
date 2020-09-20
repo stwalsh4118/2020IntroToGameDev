@@ -29,7 +29,7 @@ public class BulletPool : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bullets = new List<GameObject>();
+        // = new List<GameObject>();
     }
 
     public GameObject GetBullet(string tag)

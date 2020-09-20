@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.ondrejnepozitek.procedurallevelgenerator": {
+      "version": "https://github.com/OndrejNepozitek/ProceduralLevelGenerator-Unity.git#upm",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "1974776e32c5d5af9b1044132c2e66dac7a67115"
+    },
     "com.sitterheim.unityresolutiondialog": {
       "version": "https://github.com/sitterheim/UnityResolutionDialog.git#release/stable",
       "depth": 0,
@@ -78,6 +85,16 @@
       "depth": 0,
       "source": "builtin",
       "dependencies": {}
+    },
+    "com.unity.2d.tilemap.extras": {
+      "version": "https://github.com/Unity-Technologies/2d-extras.git#master",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.modules.tilemap": "1.0.0",
+        "com.unity.2d.tilemap": "1.0.0"
+      },
+      "hash": "c051b95afaf1a099a0369b70fdea19bde5d8d100"
     },
     "com.unity.cinemachine": {
       "version": "2.6.2",

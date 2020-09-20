@@ -46,6 +46,8 @@
     "com.unity.modules.vr": "1.0.0",
     "com.unity.modules.wind": "1.0.0",
     "com.unity.modules.xr": "1.0.0",
-    "com.sitterheim.unityresolutiondialog": "https://github.com/sitterheim/UnityResolutionDialog.git#release/stable"
+    "com.sitterheim.unityresolutiondialog": "https://github.com/sitterheim/UnityResolutionDialog.git#release/stable",
+    "com.unity.2d.tilemap.extras": "https://github.com/Unity-Technologies/2d-extras.git#master",
+    "com.ondrejnepozitek.procedurallevelgenerator": "https://github.com/OndrejNepozitek/ProceduralLevelGenerator-Unity.git#upm"
   }
 }

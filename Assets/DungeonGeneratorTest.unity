@@ -1,0 +1,641 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!29 &1
+OcclusionCullingSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_OcclusionBakeSettings:
+    smallestOccluder: 5
+    smallestHole: 0.25
+    backfaceThreshold: 100
+  m_SceneGUID: 00000000000000000000000000000000
+  m_OcclusionCullingData: {fileID: 0}
+--- !u!104 &2
+RenderSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 9
+  m_Fog: 0
+  m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  m_FogMode: 3
+  m_FogDensity: 0.01
+  m_LinearFogStart: 0
+  m_LinearFogEnd: 300
+  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
+  m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
+  m_AmbientIntensity: 1
+  m_AmbientMode: 3
+  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
+  m_SkyboxMaterial: {fileID: 0}
+  m_HaloStrength: 0.5
+  m_FlareStrength: 1
+  m_FlareFadeSpeed: 3
+  m_HaloTexture: {fileID: 0}
+  m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
+  m_DefaultReflectionMode: 0
+  m_DefaultReflectionResolution: 128
+  m_ReflectionBounces: 1
+  m_ReflectionIntensity: 1
+  m_CustomReflection: {fileID: 0}
+  m_Sun: {fileID: 0}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_UseRadianceAmbientProbe: 0
+--- !u!157 &3
+LightmapSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
+  m_GISettings:
+    serializedVersion: 2
+    m_BounceScale: 1
+    m_IndirectOutputScale: 1
+    m_AlbedoBoost: 1
+    m_EnvironmentLightingMode: 0
+    m_EnableBakedLightmaps: 0
+    m_EnableRealtimeLightmaps: 0
+  m_LightmapEditorSettings:
+    serializedVersion: 12
+    m_Resolution: 2
+    m_BakeResolution: 40
+    m_AtlasSize: 1024
+    m_AO: 0
+    m_AOMaxDistance: 1
+    m_CompAOExponent: 1
+    m_CompAOExponentDirect: 0
+    m_ExtractAmbientOcclusion: 0
+    m_Padding: 2
+    m_LightmapParameters: {fileID: 0}
+    m_LightmapsBakeMode: 1
+    m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
+    m_ReflectionCompression: 2
+    m_MixedBakeMode: 2
+    m_BakeBackend: 1
+    m_PVRSampling: 1
+    m_PVRDirectSampleCount: 32
+    m_PVRSampleCount: 512
+    m_PVRBounces: 2
+    m_PVREnvironmentSampleCount: 256
+    m_PVREnvironmentReferencePointCount: 2048
+    m_PVRFilteringMode: 1
+    m_PVRDenoiserTypeDirect: 1
+    m_PVRDenoiserTypeIndirect: 1
+    m_PVRDenoiserTypeAO: 1
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
+    m_PVREnvironmentMIS: 1
+    m_PVRCulling: 1
+    m_PVRFilteringGaussRadiusDirect: 1
+    m_PVRFilteringGaussRadiusIndirect: 5
+    m_PVRFilteringGaussRadiusAO: 2
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_ExportTrainingData: 0
+    m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
+  m_LightingDataAsset: {fileID: 0}
+  m_LightingSettings: {fileID: 0}
+--- !u!196 &4
+NavMeshSettings:
+  serializedVersion: 2
+  m_ObjectHideFlags: 0
+  m_BuildSettings:
+    serializedVersion: 2
+    agentTypeID: 0
+    agentRadius: 0.5
+    agentHeight: 2
+    agentSlope: 45
+    agentClimb: 0.4
+    ledgeDropHeight: 0
+    maxJumpAcrossDistance: 0
+    minRegionArea: 2
+    manualCellSize: 0
+    cellSize: 0.16666667
+    manualTileSize: 0
+    tileSize: 256
+    accuratePlacement: 0
+    maxJobWorkers: 0
+    preserveTilesOutsideBounds: 0
+    debug:
+      m_Flags: 0
+  m_NavMeshData: {fileID: 0}
+--- !u!1 &446262634
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 446262636}
+  - component: {fileID: 446262635}
+  m_Layer: 0
+  m_Name: Generated Level
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &446262635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446262634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6374e3c6b7c2b31469c5b57ae85656a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RoomInstances:
+  - room: {fileID: 4415107899501003704, guid: b55a33b6dbce11a44af353548ee15b91, type: 2}
+    isCorridor: 0
+    connection: {fileID: 0}
+    roomTemplatePrefab: {fileID: 6190926243407246373, guid: 5f49e279d9f2fee4581352b8d173e4ed,
+      type: 3}
+    roomTemplateInstance: {fileID: 0}
+    position: {x: 6, y: 21, z: 0}
+    doors:
+    - doorLine:
+        fromX: 0
+        fromY: 12
+        fromZ: 0
+        toX: 0
+        toY: 12
+        toZ: 0
+      facingDirection: {x: -1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 1280919077}
+    outlinePolygon:
+      points:
+      - {x: -6, y: 22}
+      - {x: -5, y: 22}
+      - {x: -5, y: 23}
+      - {x: -3, y: 23}
+      - {x: -3, y: 24}
+      - {x: -2, y: 24}
+      - {x: -2, y: 25}
+      - {x: 13, y: 25}
+      - {x: 13, y: 24}
+      - {x: 15, y: 24}
+      - {x: 15, y: 23}
+      - {x: 16, y: 23}
+      - {x: 16, y: 17}
+      - {x: 13, y: 17}
+      - {x: 13, y: 15}
+      - {x: 12, y: 15}
+      - {x: 12, y: 11}
+      - {x: 11, y: 11}
+      - {x: 11, y: 10}
+      - {x: 10, y: 10}
+      - {x: 10, y: 8}
+      - {x: 9, y: 8}
+      - {x: 9, y: 7}
+      - {x: 4, y: 7}
+      - {x: 4, y: 8}
+      - {x: 3, y: 8}
+      - {x: 3, y: 9}
+      - {x: 1, y: 9}
+      - {x: 1, y: 10}
+      - {x: 0, y: 10}
+      - {x: 0, y: 15}
+      - {x: -2, y: 15}
+      - {x: -2, y: 16}
+      - {x: -4, y: 16}
+      - {x: -4, y: 17}
+      - {x: -6, y: 17}
+  - room: {fileID: 7561129382421301183, guid: b55a33b6dbce11a44af353548ee15b91, type: 2}
+    isCorridor: 0
+    connection: {fileID: 0}
+    roomTemplatePrefab: {fileID: 5745903599377394431, guid: bba0eacccd1b1ea42910f116c6cc0793,
+      type: 3}
+    roomTemplateInstance: {fileID: 0}
+    position: {x: -30, y: 14, z: 0}
+    doors:
+    - doorLine:
+        fromX: -18
+        fromY: 12
+        fromZ: 0
+        toX: -18
+        toY: 12
+        toZ: 0
+      facingDirection: {x: 1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 1280919077}
+    - doorLine:
+        fromX: -41
+        fromY: 17
+        fromZ: 0
+        toX: -41
+        toY: 17
+        toZ: 0
+      facingDirection: {x: -1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 718797637}
+    outlinePolygon:
+      points:
+      - {x: -41, y: 19}
+      - {x: -40, y: 19}
+      - {x: -40, y: 20}
+      - {x: -39, y: 20}
+      - {x: -39, y: 21}
+      - {x: -38, y: 21}
+      - {x: -38, y: 22}
+      - {x: -36, y: 22}
+      - {x: -36, y: 23}
+      - {x: -33, y: 23}
+      - {x: -33, y: 24}
+      - {x: -26, y: 24}
+      - {x: -26, y: 23}
+      - {x: -24, y: 23}
+      - {x: -24, y: 22}
+      - {x: -23, y: 22}
+      - {x: -23, y: 21}
+      - {x: -22, y: 21}
+      - {x: -22, y: 19}
+      - {x: -21, y: 19}
+      - {x: -21, y: 17}
+      - {x: -20, y: 17}
+      - {x: -20, y: 15}
+      - {x: -19, y: 15}
+      - {x: -19, y: 14}
+      - {x: -18, y: 14}
+      - {x: -18, y: 9}
+      - {x: -19, y: 9}
+      - {x: -19, y: 7}
+      - {x: -21, y: 7}
+      - {x: -21, y: 6}
+      - {x: -22, y: 6}
+      - {x: -22, y: 5}
+      - {x: -24, y: 5}
+      - {x: -24, y: 4}
+      - {x: -29, y: 4}
+      - {x: -29, y: 5}
+      - {x: -32, y: 5}
+      - {x: -32, y: 6}
+      - {x: -33, y: 6}
+      - {x: -33, y: 7}
+      - {x: -34, y: 7}
+      - {x: -34, y: 8}
+      - {x: -35, y: 8}
+      - {x: -35, y: 9}
+      - {x: -37, y: 9}
+      - {x: -37, y: 10}
+      - {x: -38, y: 10}
+      - {x: -38, y: 11}
+      - {x: -39, y: 11}
+      - {x: -39, y: 13}
+      - {x: -40, y: 13}
+      - {x: -40, y: 14}
+      - {x: -41, y: 14}
+  - room: {fileID: 2255248386167443133, guid: b55a33b6dbce11a44af353548ee15b91, type: 2}
+    isCorridor: 0
+    connection: {fileID: 0}
+    roomTemplatePrefab: {fileID: 5745903599377394431, guid: bba0eacccd1b1ea42910f116c6cc0793,
+      type: 3}
+    roomTemplateInstance: {fileID: 0}
+    position: {x: -71, y: 20, z: 0}
+    doors:
+    - doorLine:
+        fromX: -59
+        fromY: 17
+        fromZ: 0
+        toX: -59
+        toY: 17
+        toZ: 0
+      facingDirection: {x: 1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 718797637}
+    outlinePolygon:
+      points:
+      - {x: -82, y: 25}
+      - {x: -81, y: 25}
+      - {x: -81, y: 26}
+      - {x: -80, y: 26}
+      - {x: -80, y: 27}
+      - {x: -79, y: 27}
+      - {x: -79, y: 28}
+      - {x: -77, y: 28}
+      - {x: -77, y: 29}
+      - {x: -74, y: 29}
+      - {x: -74, y: 30}
+      - {x: -67, y: 30}
+      - {x: -67, y: 29}
+      - {x: -65, y: 29}
+      - {x: -65, y: 28}
+      - {x: -64, y: 28}
+      - {x: -64, y: 27}
+      - {x: -63, y: 27}
+      - {x: -63, y: 25}
+      - {x: -62, y: 25}
+      - {x: -62, y: 23}
+      - {x: -61, y: 23}
+      - {x: -61, y: 21}
+      - {x: -60, y: 21}
+      - {x: -60, y: 20}
+      - {x: -59, y: 20}
+      - {x: -59, y: 15}
+      - {x: -60, y: 15}
+      - {x: -60, y: 13}
+      - {x: -62, y: 13}
+      - {x: -62, y: 12}
+      - {x: -63, y: 12}
+      - {x: -63, y: 11}
+      - {x: -65, y: 11}
+      - {x: -65, y: 10}
+      - {x: -70, y: 10}
+      - {x: -70, y: 11}
+      - {x: -73, y: 11}
+      - {x: -73, y: 12}
+      - {x: -74, y: 12}
+      - {x: -74, y: 13}
+      - {x: -75, y: 13}
+      - {x: -75, y: 14}
+      - {x: -76, y: 14}
+      - {x: -76, y: 15}
+      - {x: -78, y: 15}
+      - {x: -78, y: 16}
+      - {x: -79, y: 16}
+      - {x: -79, y: 17}
+      - {x: -80, y: 17}
+      - {x: -80, y: 19}
+      - {x: -81, y: 19}
+      - {x: -81, y: 20}
+      - {x: -82, y: 20}
+  - room: {fileID: 1280919077}
+    isCorridor: 1
+    connection: {fileID: -6477471195477719719, guid: b55a33b6dbce11a44af353548ee15b91,
+      type: 2}
+    roomTemplatePrefab: {fileID: 5916405071620278871, guid: 4ac70c4367d380c47b196da6333fc597,
+      type: 3}
+    roomTemplateInstance: {fileID: 0}
+    position: {x: -8, y: 13, z: 0}
+    doors:
+    - doorLine:
+        fromX: 0
+        fromY: 12
+        fromZ: 0
+        toX: 0
+        toY: 12
+        toZ: 0
+      facingDirection: {x: -1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 4415107899501003704, guid: b55a33b6dbce11a44af353548ee15b91,
+        type: 2}
+    - doorLine:
+        fromX: -18
+        fromY: 12
+        fromZ: 0
+        toX: -18
+        toY: 12
+        toZ: 0
+      facingDirection: {x: 1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 7561129382421301183, guid: b55a33b6dbce11a44af353548ee15b91,
+        type: 2}
+    outlinePolygon:
+      points:
+      - {x: -18, y: 13}
+      - {x: 0, y: 13}
+      - {x: 0, y: 11}
+      - {x: -18, y: 11}
+  - room: {fileID: 718797637}
+    isCorridor: 1
+    connection: {fileID: -1792198401538170973, guid: b55a33b6dbce11a44af353548ee15b91,
+      type: 2}
+    roomTemplatePrefab: {fileID: 5916405071620278871, guid: 4ac70c4367d380c47b196da6333fc597,
+      type: 3}
+    roomTemplateInstance: {fileID: 0}
+    position: {x: -49, y: 18, z: 0}
+    doors:
+    - doorLine:
+        fromX: -41
+        fromY: 17
+        fromZ: 0
+        toX: -41
+        toY: 17
+        toZ: 0
+      facingDirection: {x: -1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 7561129382421301183, guid: b55a33b6dbce11a44af353548ee15b91,
+        type: 2}
+    - doorLine:
+        fromX: -59
+        fromY: 17
+        fromZ: 0
+        toX: -59
+        toY: 17
+        toZ: 0
+      facingDirection: {x: 1, y: 0}
+      isHorizontal: 0
+      connectedRoom: {fileID: 2255248386167443133, guid: b55a33b6dbce11a44af353548ee15b91,
+        type: 2}
+    outlinePolygon:
+      points:
+      - {x: -59, y: 18}
+      - {x: -41, y: 18}
+      - {x: -41, y: 16}
+      - {x: -59, y: 16}
+--- !u!4 &446262636
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446262634}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &718797637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 0, y: 0}
+  Name: Corridor
+  IndividualRoomTemplates: []
+  RoomTemplateSets: []
+--- !u!1 &755048270
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 755048272}
+  - component: {fileID: 755048271}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &755048271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755048270}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11725bdbb93631241b38951f78cae60c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  FixedLevelGraphConfig:
+    LevelGraph: {fileID: 11400000, guid: b55a33b6dbce11a44af353548ee15b91, type: 2}
+    UseCorridors: 1
+  GeneratorConfig:
+    RootGameObject: {fileID: 0}
+    Timeout: 200000
+    RepeatModeOverride: 0
+  PostProcessConfig:
+    InitializeSharedTilemaps: 1
+    TilemapLayersHandler: {fileID: 0}
+    CopyTilesToSharedTilemaps: 1
+    CenterGrid: 1
+    DisableRoomTemplatesRenderers: 1
+    DisableRoomTemplatesColliders: 1
+  CustomPostProcessTasks: []
+  OtherConfig:
+    UseRandomSeed: 1
+    RandomGeneratorSeed: 0
+    GenerateOnStart: 1
+  AdvancedConfig:
+    ThrowExceptionsImmediately: 0
+  UseRandomSeed: 1
+  RandomGeneratorSeed: 0
+  GenerateOnStart: 1
+  ThrowExceptionsImmediately: 0
+--- !u!4 &755048272
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 755048270}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.1355295, y: 10.717016, z: -14.269683}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1280919077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8074dc491ddc34f4e83332d9eae76980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Position: {x: 0, y: 0}
+  Name: Corridor
+  IndividualRoomTemplates: []
+  RoomTemplateSets: []
+--- !u!1 &2119927306
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2119927309}
+  - component: {fileID: 2119927308}
+  - component: {fileID: 2119927307}
+  m_Layer: 0
+  m_Name: Main Camera
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!81 &2119927307
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119927306}
+  m_Enabled: 1
+--- !u!20 &2119927308
+Camera:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119927306}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_projectionMatrixMode: 1
+  m_GateFitMode: 2
+  m_FOVAxisMode: 0
+  m_SensorSize: {x: 36, y: 24}
+  m_LensShift: {x: 0, y: 0}
+  m_FocalLength: 50
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 1
+  orthographic size: 5
+  m_Depth: -1
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_AllowDynamicResolution: 0
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+--- !u!4 &2119927309
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119927306}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
