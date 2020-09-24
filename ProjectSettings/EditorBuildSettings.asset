@@ -5,22 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/copy.unity
-    guid: 0e39e3f983543e343a99bcbebd74660d
-  - enabled: 0
-    path: Assets/Scenes/sceneexperiment.unity
-    guid: fc85a322d9f80c14eae9ebb4474c64b1
   - enabled: 1
-    path: Assets/tilemaptest.unity
+    path: Assets/Scenes/StartScreen.unity
+    guid: 02842ff8e8623c948a6ec2d20cab838e
+  - enabled: 1
+    path: Assets/Scenes/Limbo.unity
     guid: bfc73481f5067c6468568f94ac360759
-  - enabled: 0
-    path: Assets/PlayTest.unity
-    guid: b3ef933461d6a4347a59c1542f5306a4
-  - enabled: 0
-    path: Assets/movementTutorial.unity
-    guid: 7ab8f214600bb124ba9323690ec813e9
+  - enabled: 1
+    path: Assets/Scenes/GluttonyFight.unity
+    guid: c493e7a8a22e0c740b0c58a77f97f4f4
   m_configObjects: {}

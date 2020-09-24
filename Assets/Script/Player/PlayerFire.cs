@@ -15,18 +15,17 @@ public class PlayerFire : MonoBehaviour
     public float firerate = .1f;
     public float count = 0;
 
-
     private Vector2 bulletMoveDirection;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     void Update()
     {
-        if(count >= firerate && !MessagePromptUI.InDialog)
+        if(count >= firerate && !MessagePromptUI.InDialog && !GetComponent<playerMovement>().isRolling)
         {
             Fire();
             count = 0;
@@ -59,6 +58,7 @@ public class PlayerFire : MonoBehaviour
                 bul.transform.position = transform.position;
                 bul.transform.rotation = Quaternion.Euler(new Vector3(0, 0, (Mathf.Atan2(directionVector.y, directionVector.x) * Mathf.Rad2Deg) - 90));
                 bul.GetComponent<Bullet>().SetMoveSpeed(bulletMS);
+                bul.GetComponent<Bullet>().SetDamage(GetComponentInChildren<Player>().CalculateDamage());
                 bul.SetActive(true);
                 bul.GetComponent<Bullet>().SetMoveDirection(angle);
             }

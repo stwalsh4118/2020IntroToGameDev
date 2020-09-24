@@ -5,8 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField]
-    private float moveSpeed;
-    private float moveDirection;
+    public float moveSpeed;
+    public float moveDirection;
     public float bulletLife = 5f;
     public float defaultMS = 5f;
     public float countTime = 0;
@@ -14,6 +14,8 @@ public class Bullet : MonoBehaviour
     public float curve = 0;
     public float x1;
     public float y1;
+    public float baseScale;
+    public int bulletDamage = 0;
 
 
     private void OnEnable()
@@ -21,13 +23,13 @@ public class Bullet : MonoBehaviour
         //Invoke("Destroy", 3f);
     }
     // Start is called before the first frame update
-    void Start()
+    protected virtual void Start()
     {
-
+        baseScale = transform.localScale.x;
     }
 
     // Update is called once per frame
-    void Update()
+    protected virtual void Update()
     {
         moveDirection = moveDirection + curve * Time.deltaTime;
         moveSpeed = moveSpeed + acceleration * Time.deltaTime;
@@ -42,12 +44,12 @@ public class Bullet : MonoBehaviour
         Vector3 move = new Vector3(x, y, 1f);
         transform.position = move;
         countTime = countTime + Time.deltaTime;
-        if(countTime >= bulletLife)
+        if (countTime >= bulletLife)
         {
             countTime = 0;
             Destroy();
         }
-        if(gameObject.activeInHierarchy == false)
+        if (gameObject.activeInHierarchy == false)
         {
             countTime = 0;
         }
@@ -57,7 +59,7 @@ public class Bullet : MonoBehaviour
     {
         moveDirection = dir;
     }
-        
+
     public void SetMoveSpeed(float speed)
     {
         moveSpeed = speed;
@@ -78,12 +80,17 @@ public class Bullet : MonoBehaviour
         countTime = 0;
     }
 
+    public void SetDefaultScale()
+    {
+        transform.localScale = new Vector3(baseScale, baseScale, 0f);
+    }
+
     public void SetDefault()
     {
         moveSpeed = defaultMS;
     }
 
-    public void SetXY(float x, float y) 
+    public void SetXY(float x, float y)
     {
         x1 = x;
         y1 = y;
@@ -105,6 +112,11 @@ public class Bullet : MonoBehaviour
         float radians = angle * Mathf.PI / 180;
         return -Mathf.Sin(radians);
 
+    }
+
+    public void SetDamage(int bd)
+    {
+        bulletDamage = bd;
     }
 
 

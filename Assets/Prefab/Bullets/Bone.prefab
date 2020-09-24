@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7232540596581254255}
   - component: {fileID: 1809339947096809240}
-  - component: {fileID: -1756272836915298590}
   - component: {fileID: -2170887957787178235}
   - component: {fileID: -8359021759980139596}
   - component: {fileID: 2451156279278599606}
+  - component: {fileID: -5072234955072360522}
   m_Layer: 0
   m_Name: Bone
   m_TagString: Bone
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 72f8602bb36914d4fa8647391f6051f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -86,26 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-1756272836915298590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3372554544521630050}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b87e6f0495928944f86fd62b86c3199b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 0
-  bulletLife: 5
-  defaultMS: 5
-  countTime: 0
-  acceleration: 0
-  curve: 0
-  x1: 0
-  y1: 0
 --- !u!114 &-2170887957787178235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,3 +162,25 @@ PolygonCollider2D:
       - {x: 0.02, y: -0.14999999}
       - {x: 0.19, y: 0.03}
       - {x: 0.28, y: 0.06}
+--- !u!114 &-5072234955072360522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3372554544521630050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9af59870da40d546830202b0b19b52b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 0
+  moveDirection: 0
+  bulletLife: 5
+  defaultMS: 5
+  countTime: 0
+  acceleration: 0
+  curve: 0
+  x1: 0
+  y1: 0
+  baseScale: 0

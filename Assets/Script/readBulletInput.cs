@@ -18,7 +18,7 @@ public class readBulletInput : MonoBehaviour
     void Awake()
     {
         inputValues = new float[22];
-        glut = GameObject.Find("Gluttony");
+        glut = GameObject.Find("Boss");
         BPG = glut.GetComponent<BulletPatternGenerator>();
         defaults = BPG.defaults;
         SetDefaults();

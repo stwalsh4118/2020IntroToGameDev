@@ -1,7 +1,79 @@
 fileFormatVersion: 2
 guid: 9fbbdea74271e5146a5ce66ca49b72e2
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: -6383840792322587427
+    second: spr_ArcherDash_strip_NoBkg_0
+  - first:
+      213: 2658056000246406634
+    second: spr_ArcherDash_strip_NoBkg_1
+  - first:
+      213: 1956391048688057792
+    second: spr_ArcherDash_strip_NoBkg_2
+  - first:
+      213: 8315193402684791560
+    second: spr_ArcherDash_strip_NoBkg_3
+  - first:
+      213: -6607601680713929482
+    second: spr_ArcherDash_strip_NoBkg_4
+  - first:
+      213: -1904458416949389513
+    second: spr_ArcherDash_strip_NoBkg_5
+  - first:
+      213: -4681940711591112114
+    second: spr_ArcherDash_strip_NoBkg_6
+  - first:
+      213: 6504735261283429872
+    second: spr_ArcherDash_strip_NoBkg_7
+  - first:
+      213: 7170064908779786744
+    second: spr_ArcherDash_strip_NoBkg_8
+  - first:
+      213: -6658175687907798547
+    second: spr_ArcherDash_strip_NoBkg_9
+  - first:
+      213: -3356522382420394467
+    second: spr_ArcherDash_strip_NoBkg_10
+  - first:
+      213: -6421938143169101536
+    second: spr_ArcherDash_strip_NoBkg_11
+  - first:
+      213: 4343829271563977093
+    second: spr_ArcherDash_strip_NoBkg_12
+  - first:
+      213: 1057635630311590892
+    second: spr_ArcherDash_strip_NoBkg_13
+  - first:
+      213: 5578922161830422878
+    second: spr_ArcherDash_strip_NoBkg_0
+  - first:
+      213: 4123546623112488225
+    second: spr_ArcherDash_strip_NoBkg_1
+  - first:
+      213: 8707009556318373279
+    second: spr_ArcherDash_strip_NoBkg_2
+  - first:
+      213: -1688319536733635008
+    second: spr_ArcherDash_strip_NoBkg_3
+  - first:
+      213: 9170709785168899398
+    second: spr_ArcherDash_strip_NoBkg_4
+  - first:
+      213: -6213863398553353330
+    second: spr_ArcherDash_strip_NoBkg_5
+  - first:
+      213: -5806594790151739866
+    second: spr_ArcherDash_strip_NoBkg_6
+  - first:
+      213: -6612957884965578477
+    second: spr_ArcherDash_strip_NoBkg_7
+  - first:
+      213: 8859619589008732956
+    second: spr_ArcherDash_strip_NoBkg_8
+  - first:
+      213: -1830234760621293847
+    second: spr_ArcherDash_strip_NoBkg_9
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -41,7 +113,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -73,9 +145,231 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_0
+      rect:
+        serializedVersion: 2
+        x: 45
+        y: 50
+        width: 38
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e59e475d5205c6d40800000000000000
+      internalID: 5578922161830422878
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_1
+      rect:
+        serializedVersion: 2
+        x: 173
+        y: 50
+        width: 38
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 125a1656ec7c93930800000000000000
+      internalID: 4123546623112488225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_2
+      rect:
+        serializedVersion: 2
+        x: 301
+        y: 50
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f95c94c4f0385d870800000000000000
+      internalID: 8707009556318373279
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_3
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 50
+        width: 38
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 04eb3a19352e198e0800000000000000
+      internalID: -1688319536733635008
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_4
+      rect:
+        serializedVersion: 2
+        x: 557
+        y: 50
+        width: 38
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 64de03b06f7e44f70800000000000000
+      internalID: 9170709785168899398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_5
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 50
+        width: 39
+        height: 33
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e830d66592ce3c9a0800000000000000
+      internalID: -6213863398553353330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_6
+      rect:
+        serializedVersion: 2
+        x: 813
+        y: 50
+        width: 38
+        height: 36
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6262f529dc4da6fa0800000000000000
+      internalID: -5806594790151739866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_7
+      rect:
+        serializedVersion: 2
+        x: 941
+        y: 50
+        width: 38
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 319120037dd0a34a0800000000000000
+      internalID: -6612957884965578477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_8
+      rect:
+        serializedVersion: 2
+        x: 1069
+        y: 50
+        width: 38
+        height: 37
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1335ff6311b3fa70800000000000000
+      internalID: 8859619589008732956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: spr_ArcherDash_strip_NoBkg_9
+      rect:
+        serializedVersion: 2
+        x: 1197
+        y: 50
+        width: 38
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ee7895ae23b996e0800000000000000
+      internalID: -1830234760621293847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []

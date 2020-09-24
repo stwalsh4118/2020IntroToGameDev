@@ -1,0 +1,8 @@
+//*Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+//startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
+//invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
+//"," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
+//commandLength + "," + tag, shootatplayer);
+//
+//shoots two shots with player in the middle, comes back halfway through
+1,2,90,20,0,0,360,0,0,0,1,10,1000,0,0,0,0,15,-5,0,6,.15,Bone,1,1

@@ -7,7 +7,6 @@ using UnityEngine.UI;
 using TMPro;
 
 public class MessagePromptUI : MonoBehaviour {
-
 	private static TextMeshProUGUI promptText;
 	private static GameObject TextBubble;
 	private static GameObject speaker;
@@ -20,11 +19,14 @@ public class MessagePromptUI : MonoBehaviour {
 		promptText = GameObject.Find("DialogBox").GetComponent<TextMeshProUGUI>();
 		speaker = GameObject.Find("Speaker");
 		TextBubble.SetActive(false);
+		speaker.SetActive(false);
 	}
+
 
 	public static void PickUpPrompt (string itemName) {
 
 		TextBubble.SetActive(true);
+		speaker.SetActive(true);
 		InDialog = true;
 		promptText.text = "Press E to pick the " + itemName;
 	}
@@ -32,10 +34,11 @@ public class MessagePromptUI : MonoBehaviour {
 	public static void ClearAreaPrompt () {
 		promptText.text = "This area looks good. Press H to signal the flare.";
 	}
-	
+
 	public static void ErasePrompt () {
 		promptText.text = "";
 		TextBubble.SetActive(false);
+		speaker.SetActive(false);
 		InDialog = false;
 	}
 
@@ -43,6 +46,7 @@ public class MessagePromptUI : MonoBehaviour {
     {
 		InDialog = true;
 		TextBubble.SetActive(true);
+		speaker.SetActive(true);
 		promptText.text = text;
     }
 

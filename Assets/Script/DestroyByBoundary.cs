@@ -29,7 +29,8 @@ public class DestroyByBoundary : MonoBehaviour {
   void OnTriggerEnter2D(Collider2D other) {
         if (other.gameObject.tag == "Boundary")
         {
-            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Arrow"))
+            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Arrow") 
+             || (gameObject.tag == "Scythe") || (gameObject.tag == "Bone") || (gameObject.tag == "Green"))
             {
                 gameObject.SetActive(false);
             }
@@ -38,9 +39,10 @@ public class DestroyByBoundary : MonoBehaviour {
                 //Destroy(gameObject);
             }
         }
-        if (other.gameObject.tag == "Character")
+        if (other.gameObject.tag == "Character" && !other.gameObject.GetComponentInParent<playerMovement>().isRolling)
         {
-            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Bone"))
+            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Bone") || (gameObject.tag == "Scythe")
+             || (gameObject.tag == "Green"))
             {
                 gameObject.SetActive(false);
             }

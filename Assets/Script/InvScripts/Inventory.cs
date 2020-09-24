@@ -34,7 +34,7 @@ public class Inventory : MonoBehaviour {
 		layoutUI = inventoryUI.GetComponent<Text> ();
 		itemList = new List<string> ();
 	}
-	public  void UpdateInventoryUI (string itemName) {
+	public void UpdateInventoryUI (string itemName) {
 		foreach (Item item in inventory) {
 			layoutUI.text += itemName + "\n";
 		}

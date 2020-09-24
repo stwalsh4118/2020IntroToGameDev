@@ -1,0 +1,8 @@
+//*Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+//startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
+//invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
+//"," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
+//commandLength + "," + tag, shootatplayer)
+
+//slightly pull back then accelerate forward fast
+1,10,90,40,0,0,360,0,0,0,1,10,1000,0,0,0,0,-15,30,0,10,.15,Bone,1,1

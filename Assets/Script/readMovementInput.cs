@@ -15,7 +15,7 @@ public class readMovementInput : MonoBehaviour
     void Awake()
     {
         inputValues = new float[5];
-        glut = GameObject.Find("Gluttony");
+        glut = GameObject.Find("Boss");
         BM = glut.GetComponent<BossMovement>();
 
     }

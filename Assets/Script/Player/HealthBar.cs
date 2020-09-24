@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
     public int startingHealth;
     public string baseHPType;
     public float totalHealthValue = 0;
+    public GameObject deathOverlay;
     
 
     [System.Serializable]
@@ -24,7 +25,6 @@ public class HealthBar : MonoBehaviour
     void Awake()
     {
         playerHP = this;
-        player = GameObject.Find("Character").transform;
     }
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,6 @@ public class HealthBar : MonoBehaviour
         float removedHealthUnitValue = 0;
         if (totalHealthValue > 0)
         {
-            bool damageTaken = false;
             GameObject hpEnd = HPBar.Last();
             string AHT = hpEnd.GetComponent<HealthUnit>().addHealthType;
             if (AHT == "")
@@ -129,7 +128,7 @@ public class HealthBar : MonoBehaviour
     {
         for (int index = 0; index < HPBar.Count(); index++)
         {
-            HPBar[index].transform.localPosition = new Vector3((float)index, 0f, 0f);
+            HPBar[index].transform.localPosition = new Vector3((float)index/2, 0f, 0f);
         }
 
     }
@@ -137,5 +136,6 @@ public class HealthBar : MonoBehaviour
     public void PlayerDie()
     {
         Destroy(player.gameObject);
+        deathOverlay.SetActive(true);
     }
 }

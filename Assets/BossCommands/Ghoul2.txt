@@ -1,0 +1,9 @@
+//*Debug.Log(patternArrays + "," + bulletsPerArrays + "," + spreadBetweenArray + "," + spreadWithinArray + "," +
+//startAngle + "," + defaultAngle + "," + endAngle + "," + beginSpinSpeed + "," + spinRate + "," + spinModificator + "," +
+//invertSpin + "," + maxSpinRate + "," + fireRate + "," + objectWidth + "," + objectHeight + "," + xOffset +
+//"," + yOffset + "," + bulletSpeed + "," + bulletAcceleration + "," + bulletCurve + "," + bulletTTL + "," +
+//commandLength + "," + tag, shootatplayer)
+
+//two volleys of shots that come together and pincer
+1,10,90,20,0,40,360,0,0,0,1,10,1000,0,0,0,0,10,5,-40,1.8,.0001,Scythe,1,1
+1,10,90,20,0,-40,360,0,0,0,1,10,1000,0,0,0,0,10,5,40,1.8,.0001,Scythe,1,1
