@@ -10,5 +10,8 @@ public class Weapons : ScriptableObject
     public Sprite icon = null;
     public float maxDamage = 20f;
     public float minDamage = 10f;
+    public int numBullets = 1;
+    public int numBulletGroups = 1;
+    public int spread = 20;
     
 }

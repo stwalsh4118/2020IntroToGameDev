@@ -1,88 +1,76 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour {
+public class Inventory : MonoBehaviour
+{
 
 
-	public delegate void OnItemChange ();
-	public OnItemChange onItemChangeCallback;
-	public List<Item> inventory = new List<Item> (); // List of Items. Are ITEMS.
-	private List<string> itemList; // List of the names of inventory's items. ARE STRINGS.
-	public GameObject inventoryUI;
-	[Tooltip("How many items can this inventory hold?")]
-	public int inventorySpace = 20;
-	public static Inventory instance;
+    public List<Item> inventory = new List<Item>();
+    public static Inventory Instance;
 
-	private Text layoutUI; // The layoutUI that's shown in Inventory UI. (Layout is text; InventoryUI is gameObject).
+    public ItemValues IV = new ItemValues();
 
-	#region Singleton
-	void Awake (){
+    void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
 
-		if (instance != null){
-			Debug.LogWarning("More than one instance of inventory found!");
-			return;
-		}
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
 
-		instance = this;
-	}
-	#endregion
+        DontDestroyOnLoad(gameObject);
+    }
 
-	void Start () {
 
-		layoutUI = inventoryUI.GetComponent<Text> ();
-		itemList = new List<string> ();
-	}
-	public void UpdateInventoryUI (string itemName) {
-		foreach (Item item in inventory) {
-			layoutUI.text += itemName + "\n";
-		}
+    void Start()
+    {
 
-	}
-	public bool AddToInventory (Item item) {
+    }
+	
+    public void AddToInventory(Item item)
+    {
+        if (Instance.inventory.Exists(x => x.ItemName() == item.ItemName()))
+        {
+            Instance.inventory.Find(x => x.ItemName() == item.ItemName()).numberInInventory++;
+        }
+        else
+        {
+            inventory.Add(item);
+        }
+		item.OnPickUp();
 
-		if (!item.isDefault){
-		
-			if (inventory.Count >= 20){
-				Debug.Log("Not enough space in inventory");
-				return false;
-			}
-			inventory.Add (item);
-			UpdateInventoryUI (item.name);
-		}
-		if (onItemChangeCallback != null){
-			onItemChangeCallback.Invoke();
-		}
+    }
 
-		return true;
+    public void RemoveFromInventory(Item item)
+    {
+        inventory.Remove(item);
+    }
 
-	}
+}
 
-	public void RemoveFromInventory (Item item){
-		inventory.Remove(item);
-	}
+[Serializable]
 
-	public void ShowInventory () {
-		foreach (string name in ItemList) {
-			print (name);
-		}
-	}
+public class ItemValues
+{
+    public List<string> bulletProperties;
+    public float damageIncreaseAdditive;
+    public float fireRateIncrease;
+    public float bulletAccelerationIncrease;
+    public List<float> damageIncreaseMultiplicative;
+    public List<OnHitDamageInstances> onHitDamageInstances;
+}
 
-	public bool IsInInventory (string name) {
-		if (ItemList.Contains(name)) {
-			return true;
-		}
-		return false;
-	}
-
-	public List<string> ItemList {
-		get {
-			foreach (Item x in inventory) {
-				itemList.Add (x.name);
-			}
-			return itemList;
-		}
-	}
-
+[Serializable]
+public class OnHitDamageInstances
+{
+    public string damageSource;
+    public string damageType;
+    public float damageIncrease;
 }

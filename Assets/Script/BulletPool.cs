@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BulletPool : MonoBehaviour
 {
@@ -21,16 +22,22 @@ public class BulletPool : MonoBehaviour
 
     private void Awake()
     {
+        if (bulletPoolInstance == null)
+        {
+            bulletPoolInstance = this;
+        }
+
+        else if (bulletPoolInstance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        DontDestroyOnLoad(gameObject);
         pooledObjects = new List<GameObject>();
-        bulletPoolInstance = this;
-        
+        bullets = new List<GameObject>();
+        SceneManager.sceneLoaded += OnSceneLoad;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        bullets = new List<GameObject>();
-    }
 
     public GameObject GetBullet(string tag)
     {
@@ -45,13 +52,23 @@ public class BulletPool : MonoBehaviour
         {
             if (item.pooledBullet.tag == tag)
             {
-                    GameObject obj = (GameObject)Instantiate(item.pooledBullet);
-                    obj.SetActive(false);
-                    pooledObjects.Add(obj);
-                    return obj;
+                GameObject obj = (GameObject)Instantiate(item.pooledBullet);
+                obj.SetActive(false);
+                pooledObjects.Add(obj);
+                return obj;
             }
         }
         return null;
+    }
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        pooledObjects.Clear();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
 }

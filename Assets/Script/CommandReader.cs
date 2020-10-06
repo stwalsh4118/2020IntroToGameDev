@@ -62,7 +62,7 @@ public class CommandReader : MonoBehaviour
                     dataPairs[lineNum++] = trimmedLine.Split(',');
                 }
             }
-            Debug.Log(trimmedLine);
+            //Debug.Log(trimmedLine);
         }
         if (isMovement == 0)
         {

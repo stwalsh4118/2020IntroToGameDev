@@ -23,16 +23,24 @@
 using UnityEngine;
 using System.Collections;
 
-public class DestroyByBoundary : MonoBehaviour {
+public class DestroyByBoundary : MonoBehaviour
+{
 
-  // We use OnTriggerExit instead of OnTriggerEnter to ensure the object has left the screen before being removed.
-  void OnTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other)
+    {
         if (other.gameObject.tag == "Boundary")
         {
-            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Arrow") 
+            if ((gameObject.tag == "Donut") || (gameObject.tag == "Pizza") || (gameObject.tag == "Arrow")
              || (gameObject.tag == "Scythe") || (gameObject.tag == "Bone") || (gameObject.tag == "Green"))
             {
-                gameObject.SetActive(false);
+                if (GetComponent<Bullet>().bulletProperties.Exists(x => x == "bounce") && GetComponent<Bullet>().numBounces > 0)
+                {
+                    GetComponent<Bullet>().numBounces--;
+                }
+                else
+                {
+                    gameObject.SetActive(false);
+                }
             }
             else
             {
@@ -48,7 +56,7 @@ public class DestroyByBoundary : MonoBehaviour {
             }
             else
             {
-               // Destroy(gameObject);
+                // Destroy(gameObject);
             }
         }
 

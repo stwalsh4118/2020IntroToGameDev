@@ -30,6 +30,7 @@ public class HealthBar : MonoBehaviour
     void Start()
     {
         HPBar = new List<GameObject>();
+        player = GameObject.FindObjectOfType<Player>().transform.parent.transform;
         InstantiateHealthBar();
     }
 
@@ -135,7 +136,7 @@ public class HealthBar : MonoBehaviour
 
     public void PlayerDie()
     {
-        Destroy(player.gameObject);
+        player.gameObject.SetActive(false);
         deathOverlay.SetActive(true);
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class DialogManager : MonoBehaviour
 {
@@ -12,15 +13,34 @@ public class DialogManager : MonoBehaviour
 
     private Queue<string> sentences;
 
-    // Update is called once per frame
-    void Start()
+    public static DialogManager Instance;
+
+    void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        //If an instance already exists, destroy whatever this object is to enforce the singleton.
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        //Set StateManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
+        DontDestroyOnLoad(gameObject);
         sentences = new Queue<string>();
+        nameText = GameObject.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
+    }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoad;
     }
 
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Return))
         {
             DisplayNextSentence();
         }
@@ -32,7 +52,7 @@ public class DialogManager : MonoBehaviour
         nameText.text = dialog.name;
         MessagePromptUI.ChangeSpeaker(dialog.speak);
 
-        foreach(string sentence in dialog.sentences)
+        foreach (string sentence in dialog.sentences)
         {
             sentences.Enqueue(sentence);
         }
@@ -42,7 +62,7 @@ public class DialogManager : MonoBehaviour
 
     public void DisplayNextSentence()
     {
-        if(sentences.Count == 0)
+        if (sentences.Count == 0)
         {
             EndDialog();
             return;
@@ -57,4 +77,16 @@ public class DialogManager : MonoBehaviour
     {
         MessagePromptUI.ErasePrompt();
     }
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+    {
+        sentences = new Queue<string>();
+        nameText = GameObject.Find("SpeakerName").GetComponent<TextMeshProUGUI>();
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoad;
+    }
+
 }

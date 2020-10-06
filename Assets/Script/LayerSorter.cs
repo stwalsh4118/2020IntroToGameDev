@@ -6,6 +6,8 @@ public class LayerSorter : MonoBehaviour
 {
     SpriteRenderer Layer;
 
+    [SerializeField] private int defaultSortingOrder = 100;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class LayerSorter : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        //Debug.Log("wtf");
         if (other.tag == "WalkBehind")
         {
             Layer.sortingOrder = other.GetComponent<SpriteRenderer>().sortingOrder - 1;
@@ -30,7 +33,7 @@ public class LayerSorter : MonoBehaviour
     {
         if (other.tag == "WalkBehind")
         {
-            Layer.sortingOrder = 200;
+            Layer.sortingOrder = defaultSortingOrder;
         }
     }
 }

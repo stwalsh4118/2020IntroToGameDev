@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3526214898203850362}
   - component: {fileID: 6436001905689704473}
   - component: {fileID: 1764189668995509245}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Hitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665246197398204456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.0009365082, y: -0.013940811, z: -12.833336}
+  m_LocalPosition: {x: 0.0009365082, y: -0.013940811, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6928064740624335621}
@@ -54,7 +54,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -69,21 +69,21 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.27233553, y: 0.18755913}
+    - - {x: 0.18037462, y: 0.1251831}
       - {x: 0.17066431, y: 0.18443108}
-      - {x: 0.11424208, y: 0.29446363}
+      - {x: 0.07811451, y: 0.17956018}
       - {x: -0.016795635, y: 0.18609905}
-      - {x: -0.079128265, y: 0.254282}
-      - {x: -0.2512374, y: 0.026044369}
-      - {x: -0.24260455, y: -0.06480858}
-      - {x: -0.30555868, y: -0.15998363}
-      - {x: -0.25590032, y: -0.25199878}
+      - {x: -0.09555006, y: 0.16892529}
+      - {x: -0.22167826, y: 0.019478321}
+      - {x: -0.21961433, y: -0.06480858}
+      - {x: -0.20702934, y: -0.14356852}
+      - {x: -0.16065496, y: -0.16335857}
       - {x: -0.15268612, y: -0.1762085}
       - {x: -0.06413698, y: -0.19546032}
-      - {x: 0.051849842, y: -0.20435762}
-      - {x: 0.06659269, y: -0.17854261}
-      - {x: 0.2807237, y: -0.22480321}
-      - {x: 0.32958364, y: -0.028538287}
+      - {x: 0.041996956, y: -0.191226}
+      - {x: 0.0928669, y: -0.1424303}
+      - {x: 0.18547833, y: -0.106616735}
+      - {x: 0.26061296, y: 0.014140546}
 --- !u!1 &6928064740624335620
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,11 +98,11 @@ GameObject:
   - component: {fileID: 7106337600151822992}
   - component: {fileID: 1004590470448505929}
   - component: {fileID: -1504818600431386752}
-  - component: {fileID: 8356056027353600820}
   - component: {fileID: 697788077244734763}
-  m_Layer: 0
+  - component: {fileID: 444253389632956823}
+  m_Layer: 12
   m_Name: Reaper
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,7 +207,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 100
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -274,32 +274,6 @@ MonoBehaviour:
   shootTowardsPlayer: 0
   shootOnce: 0
   player: {fileID: 0}
---- !u!61 &8356056027353600820
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6928064740624335620}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.0020728111, y: -0.007080078}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6, y: 0.45}
-    newSize: {x: 0.22, y: 0.31}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.33458042, y: 0.36947346}
-  m_EdgeRadius: 0
 --- !u!114 &697788077244734763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +290,7 @@ MonoBehaviour:
   Health: 0
   moveSpeed: 6
   player: {fileID: 0}
-  aggroRange: 15
+  aggroRange: 12
   inAggroRange: 0
   firerate: 3
   bulletMS: 10
@@ -324,6 +298,22 @@ MonoBehaviour:
   damagePopUp: {fileID: 4843487009893320637, guid: 94727c4db5984d3448d0e06a6ba4b3c2,
     type: 3}
   healthBar: {fileID: 1761330643849215812}
+--- !u!58 &444253389632956823
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6928064740624335620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.03}
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1001 &2326789984730744766
 PrefabInstance:
   m_ObjectHideFlags: 0

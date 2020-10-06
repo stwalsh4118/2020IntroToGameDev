@@ -102,7 +102,7 @@ public class BPGInGame : MonoBehaviour
     }
     void Start()
     {
-        player = GameObject.Find("Character").transform;
+        player = FindObjectOfType<Player>().transform.parent.transform;
         animator = GetComponent<Animator>();
         bulletcommandReader = GetComponent<CommandReader>();
         commands = bulletcommandReader.dataPairs;

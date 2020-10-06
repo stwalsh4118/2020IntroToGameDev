@@ -5,8 +5,9 @@ public class playerMovement : MonoBehaviour
     public float baseMoveSpeed = 10f;
     public float moveSpeed = 10f;
     public Rigidbody2D rb;
+    public bool hitWall = false;
 
-    Vector2 movement;
+    public Vector2 movement;
     public Animator animator;
 
     public float rollingTime = .5f;
@@ -28,21 +29,23 @@ public class playerMovement : MonoBehaviour
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    isRolling = true;
-                    animator.SetTrigger("Roll");
-                    moveSpeed = rollSpeed;
-                    //movement = GetDirectionToMouse();
-                }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                isRolling = true;
+                animator.SetTrigger("Roll");
+                moveSpeed = rollSpeed;
+                //movement = GetDirectionToMouse();
+            }
 
             animator.SetFloat("Horizontal", movement.x);
             animator.SetFloat("Vertical", movement.y);
             animator.SetFloat("Speed", movement.sqrMagnitude);
         }
-        else {
+        else
+        {
             rollingTime -= Time.deltaTime;
-            if(rollingTime < 0) {
+            if (rollingTime < 0)
+            {
                 rollingTime = rollTime;
                 loseSpeed();
             }
@@ -55,9 +58,28 @@ public class playerMovement : MonoBehaviour
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
     }
 
-    public Vector2 GetDirectionToMouse() {
+    public Vector2 GetDirectionToMouse()
+    {
         Vector3 mouse = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 DToM = new Vector2(mouse.x - transform.position.x, mouse.y - transform.position.y);
         return DToM.normalized;
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Boundary"))
+        {
+            Debug.Log("hitwall:true");
+            hitWall = true;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Boundary"))
+        {
+            Debug.Log("hitwall:false");
+            hitWall = false;
+        }
     }
 }

@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GluttonyFight.unity
     guid: c493e7a8a22e0c740b0c58a77f97f4f4
+  - enabled: 1
+    path: Assets/Scenes/dungeongeneratortest.unity
+    guid: 5c8313880da055a498fe773cb28221c1
   m_configObjects: {}
