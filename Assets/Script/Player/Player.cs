@@ -67,4 +67,9 @@ public class Player : MonoBehaviour
     {
         localPlayerData = StateManager.Instance.GlobalPlayerData;
     }
+
+    public void TakeDamageTemp()
+    {
+
+    }
 }

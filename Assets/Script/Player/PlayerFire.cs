@@ -26,8 +26,8 @@ public class PlayerFire : MonoBehaviour
     [SerializeField] private float fireRate = .1f;
 
     //Offsets 
-    [SerializeField] private float objectWidth = 0; //Width of the bullet firing object
-    [SerializeField] private float objectHeight = 0; //Height of the bullet firing object
+    [SerializeField] private float objectWidth = 1; //Width of the bullet firing object
+    [SerializeField] private float objectHeight = 1; //Height of the bullet firing object
     [SerializeField] private float xOffset = 0; //Shift spawn point of the bullets along the X-Axis
     [SerializeField] private float yOffset = 0; //Shift spawn point of the bulltes along the Y-Axis
 
@@ -153,7 +153,16 @@ public class PlayerFire : MonoBehaviour
         bul.GetComponent<Bullet>().SetXY(x2, y2);
         bul.GetComponent<Bullet>().SetMoveDirection(direction);
         bul.GetComponent<Bullet>().SetCurve(bulletCurve);
-        bul.GetComponent<Bullet>().SetMoveSpeed(bulletSpeed);
+        
+        if(Inventory.Instance.inventory.Exists(x => x.ItemName() == "Bottle Rocket"))
+        {
+            bul.GetComponent<Bullet>().SetMoveSpeed(bulletSpeed/2);
+        }
+        else
+        {
+            bul.GetComponent<Bullet>().SetMoveSpeed(bulletSpeed);
+        }
+
         bul.GetComponent<Bullet>().SetBulletLife(bulletTTL);
         bul.GetComponent<Bullet>().SetDamage(CalculateDamage());
         bul.SetActive(true);

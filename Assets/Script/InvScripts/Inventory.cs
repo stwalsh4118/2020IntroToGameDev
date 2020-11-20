@@ -36,6 +36,7 @@ public class Inventory : MonoBehaviour
 	
     public void AddToInventory(Item item)
     {
+        item.OnPickUp();
         if (Instance.inventory.Exists(x => x.ItemName() == item.ItemName()))
         {
             Instance.inventory.Find(x => x.ItemName() == item.ItemName()).numberInInventory++;
@@ -44,7 +45,7 @@ public class Inventory : MonoBehaviour
         {
             inventory.Add(item);
         }
-		item.OnPickUp();
+
 
     }
 

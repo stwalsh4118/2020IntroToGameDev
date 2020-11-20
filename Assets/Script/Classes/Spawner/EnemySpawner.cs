@@ -6,10 +6,12 @@ using DG.Tweening;
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _Enemies;
-    private bool _hasSpawned = false;
+    [SerializeField] private bool _hasSpawned = false;
+    [SerializeField] private int _numSpawner = 0;
     [SerializeField] private int _minEnemies = 5;
     [SerializeField] private int _maxEnemies = 7;
     [SerializeField] private GameObject _enemySpawnIndicator;
+    [SerializeField] private bool _haveOneSpawnDungeon;
 
     public List<GameObject> Enemies
     {
@@ -28,6 +30,10 @@ public class EnemySpawner : MonoBehaviour
         get { return _maxEnemies; }
         set { _maxEnemies = value; }
     }
+
+    public bool HasSpawned { get => _hasSpawned; set => _hasSpawned = value; }
+    public int NumSpawner { get => _numSpawner; set => _numSpawner = value; }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -85,14 +91,33 @@ public class EnemySpawner : MonoBehaviour
                 spawnIndicator.GetComponent<SpriteRenderer>().color = new Color32(0x5E, 0x5E, 0x5E, 0xFF);
             }
             Sequence anim = DOTween.Sequence();
-            anim.Append(spawnIndicator.transform.DOScale(new Vector3(3,3,0), 1f).OnComplete(()=> createEnemy(spawn)));
+            Debug.Log(i);
+            if (i==0 && _haveOneSpawnDungeon)
+            {
+                anim.Append(spawnIndicator.transform.DOScale(new Vector3(3, 3, 0), 1f).OnComplete(() => createEnemy(spawn, true)));
+            }
+            else
+            {
+                anim.Append(spawnIndicator.transform.DOScale(new Vector3(3, 3, 0), 1f).OnComplete(() => createEnemy(spawn, false)));
+
+            }
+
             anim.Append(spawnIndicator.transform.DOScale(new Vector3(0,0,0), 1f).OnComplete(()=> Destroy(spawnIndicator)));
-            yield return null;
+            yield return new WaitForSeconds(.1f);
+        }
+        _hasSpawned = true;
+        if(StateManager.Instance.CurrentScene == "Limbo")
+        {
+            StateManager.Instance.EnemySpawnerState[_numSpawner] = _hasSpawned;
         }
     }
 
-    void createEnemy(Vector3 SpawnPoint)
+    void createEnemy(Vector3 SpawnPoint, bool giveDungeon)
     {
         GameObject spawnedEnemy = (GameObject)Instantiate(_Enemies[Random.Range(0, _Enemies.Count)], SpawnPoint, Quaternion.identity);
+        if(giveDungeon)
+        {
+            spawnedEnemy.GetComponent<ItemDroptable>().drops[0].itemsToDrop = 1;
+        }
     }
 }

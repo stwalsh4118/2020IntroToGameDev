@@ -9,6 +9,7 @@ public class BouncyBall : Item
 
     public override void OnPickUp()
     {
+        base.OnPickUp();
         if (!Inventory.Instance.IV.bulletProperties.Exists(x => x == "bounce"))
         {
             Inventory.Instance.IV.bulletProperties.Add("bounce");

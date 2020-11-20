@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class StateManager : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class StateManager : MonoBehaviour
     public PlayerState GlobalPlayerData = new PlayerState();
     public Player player;
     public bool hasPlayerLoaded = false;
+    public Dictionary<int, bool> EnemySpawnerState;
 
     private bool _inMenu = false;
     private bool _inCombat = false;
     private string _currentZone = "Limbo";
+    [SerializeField]private string _currentScene = "Limbo";  
 
     public bool inMenu
     {
@@ -33,6 +36,8 @@ public class StateManager : MonoBehaviour
         get { return _currentZone; }
         set { _currentZone = value; }
     }
+
+    public string CurrentScene { get => _currentScene; set => _currentScene = value; }
 
 
 
@@ -59,11 +64,13 @@ public class StateManager : MonoBehaviour
         DOTween.SetTweensCapacity(2000, 250);
         SceneManager.sceneLoaded += OnSceneLoad;
         player = GameObject.FindObjectOfType<Player>();
+        EnemySpawnerState = new Dictionary<int, bool>();
     }
 
-    void OnSceneLoad(Scene scene, LoadSceneMode mode)
+void OnSceneLoad(Scene scene, LoadSceneMode mode)
     {
-        LoadGameState();
+        _currentScene = scene.name;
+        LoadGameState(scene);
     }
 
     void OnDisable()
@@ -71,14 +78,40 @@ public class StateManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoad;
     }
 
-    void LoadGameState()
+    void LoadGameState(Scene scene)
     {
+        Debug.Log("loading " + scene.name);
         //load playerstate
         player = GameObject.FindObjectOfType<Player>();
         player.LoadPlayerData();
         player.GetComponentInParent<PlayerFire>().UpdateWeaponShotPattern();
+        if(scene.name == "Limbo")
+        {
+            GetEnemySpawnerStates();
+            SetEnemySpawnerStates();
+        }
+    }
 
+    void GetEnemySpawnerStates()
+    {
+        if(EnemySpawnerState.Count == 0)
+        {
+            foreach (EnemySpawner es in FindObjectsOfType<EnemySpawner>())
+            {
+                EnemySpawnerState.Add(es.NumSpawner,es.HasSpawned);
+            }
+        }
+    }
 
+    void SetEnemySpawnerStates()
+    {
+        foreach(EnemySpawner e in FindObjectsOfType<EnemySpawner>())
+        {
+            int num = e.NumSpawner;
+            bool hS = EnemySpawnerState[num];
+
+            e.HasSpawned = hS;
+        }
     }
 
 }
@@ -86,9 +119,10 @@ public class StateManager : MonoBehaviour
 [Serializable]
 public class PlayerState
 {
-    public float health;
+    public List<string> health;
     public Weapons weapon;
     public Ability ability;
+    public int numGold;
 }
 
 

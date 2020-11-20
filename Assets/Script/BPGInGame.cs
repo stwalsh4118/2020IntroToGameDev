@@ -58,6 +58,8 @@ public class BPGInGame : MonoBehaviour
     public float bulletCurve = 0;
     [SerializeField]
     public float bulletTTL = 5;
+    [SerializeField]
+    public float bulletScale = 1f;
     public float commandLength = 5f;
     public string bullettag = "Donut";
 
@@ -136,10 +138,14 @@ public class BPGInGame : MonoBehaviour
                 commandNumber++;
                 commandTime = 0;
             }
-            if (commandNumber > numCommands)
+            if ((commandNumber >= numCommands) && (commandTime >= commandLength))
             {
                 isRunningCommands = !isRunningCommands;
                 setZeros();
+                if (gameObject.name == "Boss")
+                {
+                    LoadCommands();
+                }
             }
             else if ((countTime >= fireRate) || (shootOnce == 1))
             {
@@ -238,6 +244,8 @@ public class BPGInGame : MonoBehaviour
         bul.GetComponent<Bullet>().SetAcceleration(bulletAcceleration);
         bul.GetComponent<Bullet>().SetMoveSpeed(bulletSpeed);
         bul.GetComponent<Bullet>().SetBulletLife(bulletTTL);
+        bul.GetComponent<Bullet>().SetDefaultScale();
+        bul.GetComponent<Bullet>().SetScale(bulletScale, bulletScale);
         bul.SetActive(true);
 
 
