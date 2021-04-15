@@ -51,7 +51,7 @@ public class crownAnimation : MonoBehaviour
         Debug.Log(GetComponent<CrownManager>().AquiredCrowns.Count);
         int index = 0;
         crownAnim = DOTween.Sequence();
-        camAnim = DOTween.To(()=> vcam.m_Lens.OrthographicSize, x=> vcam.m_Lens.OrthographicSize = x, 4, 1);
+        camAnim = DOTween.To(()=> vcam.m_Lens.OrthographicSize, x=> vcam.m_Lens.OrthographicSize = x, 3.90625f, 1);
         crownAnim.Insert(0, camAnim);
         foreach (GameObject crown in GetComponent<CrownManager>().AquiredCrowns)
         {
@@ -77,6 +77,6 @@ public class crownAnimation : MonoBehaviour
             Destroy(child.transform.gameObject);
         }
         
-        camAnim = DOTween.To(()=> vcam.m_Lens.OrthographicSize, x=> vcam.m_Lens.OrthographicSize = x, 8, 1);
+        camAnim = DOTween.To(()=> vcam.m_Lens.OrthographicSize, x=> vcam.m_Lens.OrthographicSize = x, 7.8125f, 1);
     }
 }

@@ -48,6 +48,7 @@ public class BMInGame : MonoBehaviour
         arenaCenterY = Arena.transform.position.y;
         x = arenaCenterX;
         y = arenaCenterY;
+        player = GameObject.FindObjectOfType<Player>().transform.parent.transform;
     }
 
     // Update is called once per frame
@@ -56,15 +57,16 @@ public class BMInGame : MonoBehaviour
 
         if (isRunningCommands)
         {
-            if (((commandTime >= commandLength) || (commandNumber == 0)) && !(numCommands == 0))
+            if (((((commandTime >= commandLength) || (commandNumber == 0)) && !(numCommands == 0) && commandNumber < numCommands)))
             {
                 changeCommand(float.Parse(commands[commandNumber][0]), float.Parse(commands[commandNumber][1]), float.Parse(commands[commandNumber][2]), float.Parse(commands[commandNumber][3]), float.Parse(commands[commandNumber][4]), int.Parse(commands[commandNumber][5]));
                 commandNumber++;
                 commandTime = 0;
             }
-            if (commandNumber >= numCommands)
+            if ((commandNumber >= numCommands) && (commandTime >= commandLength))
             {
                 isRunningCommands = !isRunningCommands;
+                LoadCommands();
             }
         }
 

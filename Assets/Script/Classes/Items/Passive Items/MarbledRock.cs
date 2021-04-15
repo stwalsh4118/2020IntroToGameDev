@@ -9,6 +9,7 @@ public class MarbledRock : Item
     
     public override void OnPickUp()
     {
+        base.OnPickUp();
         Inventory.Instance.IV.damageIncreaseAdditive += DamageIncreasePercent;
     }
 

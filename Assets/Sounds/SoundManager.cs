@@ -5,6 +5,8 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
 	// Audio players components.
+	[SerializeField]
+	public List<AudioSource> Effects;
 	public AudioSource EffectsSource;
 	public AudioSource MusicSource;
 
@@ -31,13 +33,33 @@ public class SoundManager : MonoBehaviour
 
 		//Set SoundManager to DontDestroyOnLoad so that it won't be destroyed when reloading our scene.
 		DontDestroyOnLoad (gameObject);
+		Effects.Add(PopulateAudioSources());
 	}
+
+	public AudioSource PopulateAudioSources()
+    {
+			return gameObject.AddComponent<AudioSource>() as AudioSource;
+			
+    }
 
 	// Play a single clip through the sound effects source.
 	public void Play(AudioClip clip)
 	{
-		EffectsSource.clip = clip;
-		EffectsSource.Play();
+		if (Effects.Exists(x => x.isPlaying == false))
+		{
+			AudioSource a = Effects.Find(x => x.isPlaying == false);
+			a.volume = .05f;
+			a.clip = clip;
+			a.Play();
+		}
+		else
+        {
+			AudioSource a = PopulateAudioSources();
+			a.volume = .05f;
+			a.clip = clip;
+			a.Play();
+			Effects.Add(a);
+		}
 	}
 
 	// Play a single clip through the music source.

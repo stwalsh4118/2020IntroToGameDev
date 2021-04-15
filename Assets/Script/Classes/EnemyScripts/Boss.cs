@@ -5,7 +5,7 @@ using TMPro;
 
 public class Boss : MonoBehaviour
 {
-    private float maxHP = 1000f;
+    [SerializeField] private float maxHP = 1000f;
     public float Health;
     public float moveSpeed = 5f;
     public Transform player;
@@ -47,5 +47,6 @@ public class Boss : MonoBehaviour
     public virtual void OnDeath()
     {
         Destroy(transform.gameObject);
+        Destroy(healthBar.transform.gameObject);
     }
 }

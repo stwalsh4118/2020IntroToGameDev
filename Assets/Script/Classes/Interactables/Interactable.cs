@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     protected Transform player;
     protected bool isInteracting = false;
     public bool disappearOnExitScreen = false;
+    protected float distance;
 
     protected bool promptRaised = false;
 
@@ -31,9 +32,9 @@ public class Interactable : MonoBehaviour
     protected virtual void Update()
     {
 
-        float distance = Vector3.Distance(player.position, transform.position);
+        distance = Vector3.Distance(player.position, transform.position);
 
-        if (distance <= radius && !isInteracting)
+        if (IsWithinRange() && !isInteracting)
         {
 
             if (Input.GetKeyDown(KeyCode.E))
@@ -49,6 +50,15 @@ public class Interactable : MonoBehaviour
         {
             transform.gameObject.SetActive(false);
         }
+    }
+
+    protected bool IsWithinRange()
+    {
+        if (distance <= radius)
+        {
+            return true;
+        }
+        else return false;
     }
 }
 

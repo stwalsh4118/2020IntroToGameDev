@@ -39,7 +39,7 @@ public class droppedAbility : Interactable
 
     void OnBecameVisible()
     {
-        Debug.Log("became visible");
+        //Debug.Log("became visible");
         transform.position = new Vector3(transform.position.x, start, 0f);
         anim = transform.DOMoveY(transform.position.y + moveAmount, 1, false).SetLoops(-1, LoopType.Yoyo);
     }

@@ -142,10 +142,11 @@ public class BulletPatternGenerator : MonoBehaviour
                 commandTime = 0;
             }
             //stop running commands if no more commands
-            if (commandNumber > numCommands)
+            if ((commandNumber >= numCommands) && (commandTime >= commandLength))
             {
                 isRunningCommands = !isRunningCommands;
                 setZeros();
+                LoadCommands();
             }
         }
 
@@ -281,6 +282,7 @@ public class BulletPatternGenerator : MonoBehaviour
                                 float xOff, float yOff, float bulletSpd, float bulletAccel, float bulletCurv, float bulletLife,
                                 float cmdLength, string bulletTag, int stp, int oneshot)
     {
+        Debug.Log("Changing Commands");
         patternArrays = patArrays;
         bulletsPerArrays = bulPerArray;
         spreadBetweenArray = spreadBetweenArr;
@@ -368,6 +370,7 @@ public class BulletPatternGenerator : MonoBehaviour
 
     public void setZeros()
     {
+        Debug.Log("Setting Zeros");
         patternArrays = 0;
         bulletsPerArrays = 0;
         spreadBetweenArray = 0;
@@ -420,6 +423,7 @@ public class BulletPatternGenerator : MonoBehaviour
     //load commands from the command reader
     public void LoadCommands()
     {
+        Debug.Log("Loading Commands");
         commands = bulletcommandReader.dataPairs;
         commandNumber = 0;
         countTime = 0;

@@ -134,7 +134,6 @@ MonoBehaviour:
   DefaultIndividualRoomTemplates:
   - {fileID: 6755993158692576685, guid: b2e2b490fe6859c43a0b17cf211ac970, type: 3}
   - {fileID: 4798114958182118629, guid: ad988f786390ba24ca0232a24f4c5268, type: 3}
-  - {fileID: 8555207688489602149, guid: aed83972031c77143ba0434f24cf537e, type: 3}
   DefaultRoomTemplateSets: []
   Rooms:
   - {fileID: -3418186306197664394}
@@ -146,8 +145,8 @@ MonoBehaviour:
   - {fileID: 6374843788749823034}
   - {fileID: -81539551804763512}
   EditorData:
-    PanOffset: {x: 358.08884, y: 287.88507}
-    Zoom: 0.50522536
+    PanOffset: {x: -230.49542, y: -42.631393}
+    Zoom: 1.5856136
   RoomType: ProceduralLevelGenerator.Unity.Generators.Common.LevelGraph.Room
   ConnectionType: ProceduralLevelGenerator.Unity.Generators.Common.LevelGraph.Connection
 --- !u!114 &1836438697336466520

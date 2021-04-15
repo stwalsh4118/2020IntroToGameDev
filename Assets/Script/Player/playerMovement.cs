@@ -25,29 +25,32 @@ public class playerMovement : MonoBehaviour
     // Use for registering input.
     void Update()
     {
-        if (!isRolling)
+        if (StateManager.Instance.inMenu == false)
         {
-            movement.x = Input.GetAxisRaw("Horizontal");
-            movement.y = Input.GetAxisRaw("Vertical");
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!isRolling)
             {
-                isRolling = true;
-                animator.SetTrigger("Roll");
-                moveSpeed = rollSpeed;
-                //movement = GetDirectionToMouse();
-            }
+                movement.x = Input.GetAxisRaw("Horizontal");
+                movement.y = Input.GetAxisRaw("Vertical");
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    isRolling = true;
+                    animator.SetTrigger("Roll");
+                    moveSpeed = rollSpeed;
+                    //movement = GetDirectionToMouse();
+                }
 
-            animator.SetFloat("Horizontal", movement.x);
-            animator.SetFloat("Vertical", movement.y);
-            animator.SetFloat("Speed", movement.sqrMagnitude);
-        }
-        else
-        {
-            rollingTime -= Time.deltaTime;
-            if (rollingTime < 0)
+                animator.SetFloat("Horizontal", movement.x);
+                animator.SetFloat("Vertical", movement.y);
+                animator.SetFloat("Speed", movement.sqrMagnitude);
+            }
+            else
             {
-                rollingTime = rollTime;
-                loseSpeed();
+                rollingTime -= Time.deltaTime;
+                if (rollingTime < 0)
+                {
+                    rollingTime = rollTime;
+                    loseSpeed();
+                }
             }
         }
     }

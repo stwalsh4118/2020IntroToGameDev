@@ -14,7 +14,16 @@ public class Item : MonoBehaviour
 
     public virtual void OnPickUp()
     {
-        Debug.Log("ItemPickedUp");
+        OnFirstPickUp();
+    }
+
+    public virtual void OnFirstPickUp()
+    {
+        if (!Inventory.Instance.inventory.Exists(x => x.ItemName() == ItemName()))
+        {
+            Debug.Log("first pickup");
+            numberInInventory = 1;
+        }
     }
 
     public virtual string GetDynamicDescriptionText()

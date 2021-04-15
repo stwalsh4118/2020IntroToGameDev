@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+//using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -91,7 +92,12 @@ public class Bullet : MonoBehaviour
 
     public void SetDefaultScale()
     {
-        transform.localScale = new Vector3(baseScale, baseScale, 0f);
+        transform.localScale = new Vector3(1f, 1f, 0f);
+    }
+
+    public void SetScale(float XScale, float YScale)
+    {
+        transform.localScale = new Vector3(transform.localScale.x * XScale, transform.localScale.y * YScale, 0f);
     }
 
     public void SetDefault()
@@ -163,11 +169,15 @@ public class Bullet : MonoBehaviour
     public IEnumerator AccelerateDamage()
     {
         int baseBulletDamage = bulletDamage;
-        for(; ; )
+        for (; ; )
         {
             yield return new WaitForSeconds(.5f);
-            bulletDamage += (int)((float)baseBulletDamage * (acceleration/2f));
-        } 
+            if (Inventory.Instance.inventory.Exists(x => x.ItemName() == "Bottle Rocket"))
+            {
+                bulletDamage += (int)((float)baseBulletDamage * ((Inventory.Instance.inventory.Find(x => x.ItemName() == "Bottle Rocket").numberInInventory * .25) + 1));
+            }
+        }
+
 
     }
 

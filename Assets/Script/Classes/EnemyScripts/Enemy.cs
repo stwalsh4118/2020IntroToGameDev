@@ -15,6 +15,8 @@ public class Enemy : MonoBehaviour
     public float bulletMS = 10f;
     public bool isShooting = false;
     public GameObject damagePopUp;
+    public float baseGold = 100f;
+    public float goldRangePercent = .25f;
 
     public HP healthBar;
 
@@ -80,6 +82,8 @@ public class Enemy : MonoBehaviour
 
     public virtual void OnDeath()
     {
+        DropGold();
+        GetComponent<ItemDroptable>().GetDrops();
         Destroy(transform.gameObject);
     }
 
@@ -91,5 +95,13 @@ public class Enemy : MonoBehaviour
             inAggroRange = true;
         }
         return inAggroRange;
+    }
+
+    public virtual void DropGold()
+    {
+        Debug.Log("Dropped gold");
+        GameObject gold = Instantiate(Resources.Load("Prefabs/GoldDrop", typeof(GameObject)), transform.position, Quaternion.identity) as GameObject;
+        float v = (baseGold * goldRangePercent);
+        gold.GetComponent<goldDropInteractable>().gold = (int)Random.Range((int)(baseGold - v), (int)(baseGold + v));
     }
 }

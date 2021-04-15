@@ -7,9 +7,11 @@ public class HealthBar : MonoBehaviour
 {
     public static HealthBar playerHP;
     public Transform player;
+    public PlayerState lpd;
     public int maxHealth;
     public int startingHealth;
     public string baseHPType;
+    public int numBaseHP;
     public float totalHealthValue = 0;
     public GameObject deathOverlay;
     
@@ -31,13 +33,8 @@ public class HealthBar : MonoBehaviour
     {
         HPBar = new List<GameObject>();
         player = GameObject.FindObjectOfType<Player>().transform.parent.transform;
+        lpd = GameObject.FindObjectOfType<Player>().localPlayerData;
         InstantiateHealthBar();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void TakeDamage()
@@ -50,6 +47,7 @@ public class HealthBar : MonoBehaviour
             if (AHT == "")
             {
                 HPBar.Remove(hpEnd);
+                lpd.health.Remove(lpd.health.Last());
                 string takeDamageType = hpEnd.GetComponent<HealthUnit>().takeDamageType;
                 Debug.Log(takeDamageType);
                 foreach (HealthUnitTypes HUT in HPTYPES)
@@ -60,10 +58,15 @@ public class HealthBar : MonoBehaviour
                         Debug.Log(HUT.HPType.GetComponent<HealthUnit>().type);
                         GameObject newHPType = (GameObject)Instantiate(HUT.HPType, transform);
                         HPBar.Add(newHPType);
+                        lpd.health.Add(newHPType.GetComponent<HealthUnit>().type);
                     }
                 }
                 totalHealthValue -= (hpEnd.GetComponent<HealthUnit>().healthValue - removedHealthUnitValue);
-                hpEnd.SetActive(false);
+                if(hpEnd.GetComponent<HealthUnit>().type == baseHPType)
+                {
+                    numBaseHP--;
+                }
+                Destroy(hpEnd);
             }
             else
             {
@@ -90,10 +93,15 @@ public class HealthBar : MonoBehaviour
                         Debug.Log(HUT.HPType.GetComponent<HealthUnit>().type);
                         GameObject newHPType = (GameObject)Instantiate(HUT.HPType, transform);
                         HPBar[takeHPFromIndex] = newHPType;
+                        lpd.health[takeHPFromIndex] = newHPType.GetComponent<HealthUnit>().type;
                     }
                 }
                 totalHealthValue -= (takeHPFrom.GetComponent<HealthUnit>().healthValue - removedHealthUnitValue);
-                takeHPFrom.SetActive(false);
+                if(takeHPFrom.GetComponent<HealthUnit>().type == baseHPType)
+                {
+                    numBaseHP--;
+                }
+                Destroy(takeHPFrom);
 
             }
             if (totalHealthValue <= 0)
@@ -108,18 +116,76 @@ public class HealthBar : MonoBehaviour
         }
     }
 
+    public void GainHealth(string HPGained)
+    {
+
+        string hpPath = "Prefabs/Health/" + HPGained;
+        if (HPBar.Exists(x => x.GetComponent<HealthUnit>().addHealthType == HPGained))
+        {
+            int hpToSwap = HPBar.FindIndex(x => x.GetComponent<HealthUnit>().addHealthType == HPGained);
+            GameObject removedHU = HPBar[hpToSwap];
+            GameObject hpg = (GameObject)Instantiate(Resources.Load(hpPath, typeof(GameObject)), transform) as GameObject;
+            HPBar[hpToSwap] = hpg;
+            lpd.health[hpToSwap] = HPGained;
+            totalHealthValue += hpg.GetComponent<HealthUnit>().healthValue;
+            Destroy(removedHU);
+        }
+        else
+        {
+            if (HPGained != baseHPType)
+            {
+                GameObject hpg = (GameObject)Instantiate(Resources.Load(hpPath, typeof(GameObject)), transform) as GameObject;
+                totalHealthValue += hpg.GetComponent<HealthUnit>().healthValue;
+                HPBar.Add(hpg);
+                lpd.health.Add(HPGained);
+            }
+        }
+        if(HPGained == baseHPType)
+        {
+            numBaseHP++;
+        }
+        PlaceHealthOnScreen();
+    }
+
     public void InstantiateHealthBar()
     {
-        foreach(HealthUnitTypes HUT in HPTYPES)
+        if (lpd.health.Count == 0)
         {
-            if (HUT.HPType.GetComponent<HealthUnit>().type == baseHPType)
+            foreach (HealthUnitTypes HUT in HPTYPES)
             {
-                for(int i = 0; i < startingHealth; i++)
+                if (HUT.HPType.GetComponent<HealthUnit>().type == baseHPType)
                 {
-                    GameObject baseHP = (GameObject)Instantiate(HUT.HPType, transform);
-                    totalHealthValue += baseHP.GetComponent<HealthUnit>().healthValue;
-                    HPBar.Add(baseHP);
+                    for (int i = 0; i < startingHealth; i++)
+                    {
+                        GameObject baseHP = (GameObject)Instantiate(HUT.HPType, transform);
+                        totalHealthValue += baseHP.GetComponent<HealthUnit>().healthValue;
+                        HPBar.Add(baseHP);
+                        lpd.health.Add(baseHPType);
+                        numBaseHP++;
+                    }
+
+                    if ((startingHealth < maxHealth) && (HUT.HPType.GetComponent<HealthUnit>().takeDamageType != ""))
+                    {
+                        int addEmpty = maxHealth - startingHealth;
+                        for (int i = 0; i < addEmpty; i++)
+                        {
+                            string hpPath = "Prefabs/Health/EmptyHeart";
+                            GameObject hpg = (GameObject)Instantiate(Resources.Load(hpPath, typeof(GameObject)), transform) as GameObject;
+                            HPBar.Add(hpg);
+                            lpd.health.Add("EmptyHeart");
+                        }
+                    }
                 }
+            }
+        }
+        else
+        {
+            foreach(string HPInstance in lpd.health)
+            {
+                string hpPath = "Prefabs/Health/" + HPInstance;
+                GameObject spawnedHP = (GameObject)Instantiate(Resources.Load(hpPath, typeof(GameObject)), transform) as GameObject;
+                totalHealthValue += spawnedHP.GetComponent<HealthUnit>().healthValue;
+                HPBar.Add(spawnedHP);
             }
         }
         PlaceHealthOnScreen();
@@ -130,6 +196,7 @@ public class HealthBar : MonoBehaviour
         for (int index = 0; index < HPBar.Count(); index++)
         {
             HPBar[index].transform.localPosition = new Vector3((float)index/2, 0f, 0f);
+            HPBar[index].GetComponent<SpriteRenderer>().sortingLayerName = "UI";
         }
 
     }
@@ -137,6 +204,7 @@ public class HealthBar : MonoBehaviour
     public void PlayerDie()
     {
         player.gameObject.SetActive(false);
+        lpd.health.Clear();
         deathOverlay.SetActive(true);
     }
 }

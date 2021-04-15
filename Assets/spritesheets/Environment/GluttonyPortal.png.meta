@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0dcbab0e77731e940bd7f676f070443d
+guid: 45a46c83522a0a94bae31c416f3e9e4d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -32,7 +32,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: -1
     aniso: -1
     mipBias: -100
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: 0.54
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -64,21 +64,9 @@ TextureImporter:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
-    resizeAlgorithm: 1
+    resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Standalone
-    maxTextureSize: 2048
-    resizeAlgorithm: 1
-    textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -90,18 +78,14 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape:
-    - - {x: 27, y: 11}
-      - {x: 26, y: 21}
-      - {x: 25, y: 24}
-      - {x: 21, y: 29}
-      - {x: 15, y: 32}
-      - {x: -17, y: 32}
-      - {x: -22, y: 28}
-      - {x: -24, y: 22}
-      - {x: -25, y: 14}
-      - {x: -24, y: -3}
-      - {x: -11, y: -3}
-      - {x: 28, y: -3}
+    - - {x: -40.5, y: 50.5}
+      - {x: -56.5, y: 23.5}
+      - {x: -71.5, y: 3.5}
+      - {x: -47.5, y: 5.5}
+      - {x: 35.5, y: 5.5}
+      - {x: 70.5, y: 7.5}
+      - {x: 57.5, y: 25.5}
+      - {x: 35.5, y: 49.5}
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
